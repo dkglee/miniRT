@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   control.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 12:42:33 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/23 18:16:21 by deulee           ###   ########.fr       */
+/*   Created: 2021/03/23 17:57:07 by deulee            #+#    #+#             */
+/*   Updated: 2021/03/23 18:15:36 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#ifndef CONTROL_H
+# define CONTROL_H
 
-typedef	struct	s_vec
+typedef	struct	s_control
 {
-	double		x;
-	double		y;
-	double		z;
-}				t_vec;
+	t_key		mode;
+	t_cam		*select_cam;
+	t_light		*select_light;
+	t_object	*select_object;
+	bool		save;
+}				t_control;
 
-t_vec			ft_vec_add(t_vec u, t_vec v);
-t_vec			ft_vec_sub(t_vec u, t_vec v);
-t_vec			ft_vec_cross(t_vec u, t_vec v);
-t_vec			ft_vec_product(t_vec u, double scalar);
-double			ft_vec_dot(t_vec u, t_vec v);
-t_vec			ft_vec_set(double x, double y, double z);
-t_vec			ft_vec_unit(t_vec u);
+void			init_control(t_control *control);
 
 #endif

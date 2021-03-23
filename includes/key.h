@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.h                                           :+:      :+:    :+:   */
+/*   key.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 12:42:33 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/23 18:16:21 by deulee           ###   ########.fr       */
+/*   Created: 2021/03/23 18:04:52 by deulee            #+#    #+#             */
+/*   Updated: 2021/03/23 18:06:00 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_H
-# define VECTOR_H
+#ifndef KEY_H
+# define KEY_H
 
-typedef	struct	s_vec
-{
-	double		x;
-	double		y;
-	double		z;
-}				t_vec;
-
-t_vec			ft_vec_add(t_vec u, t_vec v);
-t_vec			ft_vec_sub(t_vec u, t_vec v);
-t_vec			ft_vec_cross(t_vec u, t_vec v);
-t_vec			ft_vec_product(t_vec u, double scalar);
-double			ft_vec_dot(t_vec u, t_vec v);
-t_vec			ft_vec_set(double x, double y, double z);
-t_vec			ft_vec_unit(t_vec u);
+# define CAM_MODE 10
+# define OBJ_MODE 11
+# define LIT_MODE 12
 
 #endif
