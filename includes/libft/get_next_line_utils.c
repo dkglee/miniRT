@@ -1,0 +1,105 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/05 17:24:51 by deulee            #+#    #+#             */
+/*   Updated: 2021/01/07 19:44:56 by deulee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "get_next_line.h"
+
+t_list		*find_fd_or_make(int fd, t_list **header)
+{
+	t_list		*ltr;
+
+	ltr = *header;
+	while (ltr != NULL)
+	{
+		if (ltr->fd == fd)
+			break ;
+		ltr = ltr->next;
+	}
+	if (ltr != NULL)
+		return (ltr);
+	if (0 == (ltr = (t_list *)malloc(sizeof(t_list))))
+		return (NULL);
+	ltr->fd = fd;
+	ltr->backup = NULL;
+	ltr->buff_size = 0;
+	ltr->next = *header;
+	*header = ltr;
+	return (ltr);
+}
+
+int			backup_update(t_list *list, unsigned int len)
+{
+	char				*new_backup;
+	unsigned int		size;
+	unsigned int		i;
+
+	size = list->buff_size - len - 1;
+	new_backup = NULL;
+	if (size != 0)
+	{
+		if (0 == (new_backup = (char *)malloc(sizeof(char) * size)))
+			return (0);
+	}
+	i = 0;
+	while (++len < list->buff_size)
+	{
+		new_backup[i] = list->backup[len];
+		i++;
+	}
+	free(list->backup);
+	list->backup = new_backup;
+	list->buff_size = size;
+	return (1);
+}
+
+void		clear_fd(t_list **header)
+{
+	t_list		*ptr;
+	t_list		*temp;
+
+	ptr = *header;
+	while (ptr != NULL)
+	{
+		temp = ptr->next;
+		free(ptr->backup);
+		free(ptr);
+		ptr = temp;
+	}
+	*header = NULL;
+}
+
+void		del_fd(int fd, t_list **header)
+{
+	t_list		*ptr;
+	t_list		*before;
+
+	ptr = *header;
+	before = *header;
+	if (ptr->fd == fd)
+	{
+		*header = ptr->next;
+		free(ptr->backup);
+		free(ptr);
+		return ;
+	}
+	while (ptr != NULL)
+	{
+		if (ptr->fd == fd)
+		{
+			before->next = ptr->next;
+			free(ptr->backup);
+			free(ptr);
+			break ;
+		}
+		before = ptr;
+		ptr = ptr->next;
+	}
+}
