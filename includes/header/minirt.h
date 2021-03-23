@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:40:44 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/23 18:40:43 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/23 19:19:00 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <pthread.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
