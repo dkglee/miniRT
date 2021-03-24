@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 18:21:33 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 13:29:43 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/24 15:01:23 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ void	parse(t_render *render, int argc, char **argv)
 		if (flag == 0)
 			break ;
 		free(parse.line);
-		clear_info(parse);
+		clear_info(parse.info);
+		parse.info = NULL;
 		parse.line = NULL;
 	}
 	if (flag == -1)
 		error("Reading Line Error", parse_error, &parser);
-	clear_parse(parse);
+	clear_parse(&parse);
 }
 
 void	parse_info(t_parse *parse)
@@ -62,24 +63,23 @@ void	parse_info(t_parse *parse)
 		error("Element Error", clear_parser, parse);
 }
 
-void	clear_info(t_parse *parse)
+void	clear_parse(void *ptr)
 {
-	int		i;
+	t_parse		*parse;
 
-	i = 0;
-	while (parse->info[i])
-	{
-		free(parse->info[i]);
-		i++;
-	}
-	free(parse->info);
+	parse = (t_parse *)ptr;
+	free(parse->line);
+	clear_info(parse->info);
+	parse->line = NULL;
 	parse->info = NULL;
+	close(parse->fd);
 }
 
-void	clear_parse(t_parse *parse)
+void	parse_error(void *ptr)
 {
-	free(parse->line);
-	clear_lines(parse);
-	parse->line = NULL;
-	close(parse->fd);
+	t_parse		*parse;
+
+	parse = (t_parse *)ptr;
+	clear_parse(parse);
+	clear_render(parse->render);
 }
