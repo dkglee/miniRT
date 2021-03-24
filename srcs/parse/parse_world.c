@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:34:11 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 17:42:01 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/24 18:27:37 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	parse_cam(t_parse *parse)
 	if (!parse_vec(info[0], &origin) ||
 			!parse_vec(info[1], &orient) ||
 			!parse_double(info[2], &fov) ||
-			!validate_cam(&normal, degree))
+			!validation_cam(&normal, degree))
 		error("Cam Parse Error", parse_error, parse);
 	if (add_cam(&parse->render->stuff.cam, origin, orient, fov))
 		error("Malloc Error", parse_error, parse);
@@ -79,5 +79,19 @@ void	parse_cam(t_parse *parse)
 
 void	parse_light(t_parse *parse)
 {
-	
+	t_vec	origin;
+	t_vec	color;
+	double	ratio;
+
+	if (count_info(parse->info++) != 4)
+		error("Light Information Number Error", parse_error, parse);
+	if (!validation_extraction(parse->info))
+		error("Cam Information Error", parse_error, parse);
+	if (!parse_vec(info[0], &origin) ||
+			!parse_vec(info[1], &color) ||
+			!parse_double(info[2], &ratio) ||
+			!validation_light(ratio, &color))
+		error("Light Parse Error", parse_error, parse);
+	if (add_light(&parse->render->stuff.light, origin, color, ratio))
+		error("Malloc Error", parse_error, parse);
 }

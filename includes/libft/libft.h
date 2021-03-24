@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 15:40:27 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 15:28:03 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/24 18:09:54 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ t_list			*ft_lstmap(t_list *lst,
 					void *(*f)(void *), void (*del)(void *));
 
 double			ft_atof(const char *num);
+double			ft_cal_rad(double deg);
 
 #endif

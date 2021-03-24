@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   world.h                                            :+:      :+:    :+:   */
+/*   ft_cal_rad.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/24 17:13:40 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 18:22:25 by deulee           ###   ########.fr       */
+/*   Created: 2021/03/24 18:08:20 by deulee            #+#    #+#             */
+/*   Updated: 2021/03/24 18:09:30 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WORLD_H
-# define WROLD_H
+#include "libft.h"
 
-typedef	struct		s_cam
+double	ft_deg2rad(double deg)
 {
-	t_vec			origin;
-	t_vec			x_axis;
-	t_vec			y_axis;
-	t_vec			z_axis;
-	double			fov;
-	double			viewport_width;
-	double			viewport_height;
-	double			viewport_ratio;
-	double			tilt;
-	double			pan;
-	struct s_cam	*next;
-}					t_cam;
+	double	rad;
 
-typedef	struct		s_light
-{
-	t_vec			origin;
-	t_vec			color;
-	struct s_light	*next;
-}					t_light;
-
-#endif
+	rad = deg * 3.14159265 / 180.0f;
+	return (rad);
+}

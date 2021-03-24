@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   world.h                                            :+:      :+:    :+:   */
+/*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/24 17:13:40 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 18:22:25 by deulee           ###   ########.fr       */
+/*   Created: 2021/03/24 18:11:05 by deulee            #+#    #+#             */
+/*   Updated: 2021/03/24 18:14:59 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WORLD_H
-# define WROLD_H
+#include "minirt.h"
 
-typedef	struct		s_cam
+t_vec	rotation(t_rot rotation, t_vec u)
 {
-	t_vec			origin;
-	t_vec			x_axis;
-	t_vec			y_axis;
-	t_vec			z_axis;
-	double			fov;
-	double			viewport_width;
-	double			viewport_height;
-	double			viewport_ratio;
-	double			tilt;
-	double			pan;
-	struct s_cam	*next;
-}					t_cam;
+	t_vec	v;
 
-typedef	struct		s_light
-{
-	t_vec			origin;
-	t_vec			color;
-	struct s_light	*next;
-}					t_light;
-
-#endif
+	v.x = dot_vec(rotation.r1, u);
+	v.y = dot_vec(rotation.r2, u);
+	v.z = dot_vec(rotation.r3, u);
+	return (v);
+}
