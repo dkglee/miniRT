@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:40:44 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/23 19:19:00 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/24 17:15:33 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 
 # include "stuff.h"
 # include "toolbox.h"
+# include "world.h"
 
 # include "contorl.h"
 

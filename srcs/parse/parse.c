@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 18:21:33 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 15:01:23 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/24 15:30:36 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	parse_info(t_parse *parse)
 	if (!ft_strcmp(parse->info[0], RESOLUTION))
 		parse_resolution(parse);
 	else if (!ft_strcmp(parse->info[0], AMB_LIGHT))
-		parse_ambient_light(parse);
+		parse_amb_light(parse);
 	else if (!ft_strcmp(parse->info[0], CAM))
 		parse_cam(parse);
 	else if (!ft_strcmp(parse->info[0], LIGHT))

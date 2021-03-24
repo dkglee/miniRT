@@ -6,7 +6,7 @@
 #    By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/26 12:35:50 by deulee            #+#    #+#              #
-#    Updated: 2021/03/23 18:37:18 by deulee           ###   ########.fr        #
+#    Updated: 2021/03/24 15:28:37 by deulee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ SRCS = ft_atoi.c \
 	   ft_tolower.c \
 	   ft_toupper.c \
 	   get_next_line.c \
-	   get_next_line_utils.c
+	   get_next_line_utils.c \
+	   ft_atof.c
 
 OBJS = ft_atoi.o \
 	   ft_bzero.o \
@@ -89,7 +90,8 @@ OBJS = ft_atoi.o \
 	   ft_tolower.o \
 	   ft_toupper.o \
 	   get_next_line.o \
-	   get_next_line_utils.o
+	   get_next_line_utils.o \
+	   ft_atof.o
 
 SRCS_BN = ft_lstnew.c \
 		  ft_lstadd_front.c \
