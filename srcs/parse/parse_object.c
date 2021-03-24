@@ -1,18 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   parse_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 12:56:52 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 13:28:39 by deulee           ###   ########.fr       */
+/*   Created: 2021/03/24 13:33:17 by deulee            #+#    #+#             */
+/*   Updated: 2021/03/24 13:33:24 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "minirt.h"
 
-void	error(char *str, void (*func)(void *), void *arg);
 
-#endif
