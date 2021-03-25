@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec.c                                              :+:      :+:    :+:   */
+/*   circle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 12:46:26 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/25 17:37:59 by deulee           ###   ########.fr       */
+/*   Created: 2021/03/25 19:51:59 by deulee            #+#    #+#             */
+/*   Updated: 2021/03/25 19:55:40 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec	ft_vec_set(double x, double y, double z)
+t_circle	*create_circle(t_vec origin, t_vec orient, t_vec color, double radius)
 {
-	t_vec	new;
+	t_circle	*new;
 
-	new.x = x;
-	new.y = y;
-	new.z = z;
+	if (NULL == (new = (t_circle *)malloc(sizeof(t_circle))))
+		return (NULL);
+	new->origin = origin;
+	new->orient = ft_vec_orient(orient);
+	new->color = ft_vec_product(color, 1 / 255.0f);
+	new->radius = size;
+	new->offset = ft_vec_dot(new->origin, new->orient);
 	return (new);
-}
-
-t_vec	ft_vec_unit(t_vec u)
-{
-	double	vec_size;
-
-	vec_size = sqrt(ft_vec_dot(u, u));
-	u.x /= vec_size;
-	u.y /= vec_size;
-	u.z /= vec_size;
-	return (u);
 }

@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec.c                                              :+:      :+:    :+:   */
+/*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 12:46:26 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/25 17:37:59 by deulee           ###   ########.fr       */
+/*   Created: 2021/03/25 18:26:15 by deulee            #+#    #+#             */
+/*   Updated: 2021/03/25 18:33:25 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec	ft_vec_set(double x, double y, double z)
+t_object	*add_object(t_object **head, void *obj, t_toolbox *toolbox)
 {
-	t_vec	new;
+	t_object	*new;
 
-	new.x = x;
-	new.y = y;
-	new.z = z;
+	if (obj == NULL)
+		return (NULL);
+	if (NULL == (new = (t_object *)malloc(sizeof(t_object))))
+		return (NULL);
+	new->object = obj;
+	new->toolbox = toolbox;
+	new->stretch_mode = 0;
+	new->next = *head;
+	*head = new;
 	return (new);
-}
-
-t_vec	ft_vec_unit(t_vec u)
-{
-	double	vec_size;
-
-	vec_size = sqrt(ft_vec_dot(u, u));
-	u.x /= vec_size;
-	u.y /= vec_size;
-	u.z /= vec_size;
-	return (u);
 }
