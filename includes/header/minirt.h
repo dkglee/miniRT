@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:40:44 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 18:07:40 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/26 18:00:26 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@
 # include "contorl.h"
 
 # include "trace.h"
+# include "ray.h"
 
 #endif

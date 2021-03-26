@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_object.c                                      :+:      :+:    :+:   */
+/*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/23 18:19:50 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/26 16:52:26 by deulee           ###   ########.fr       */
+/*   Created: 2021/03/26 17:46:25 by deulee            #+#    #+#             */
+/*   Updated: 2021/03/26 17:59:57 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef RAY_H
+# define RAY_H
 
-void	move_sp(void *ptr, t_vec src)
+typedef	struct	s_ray
 {
-	t_sphere	*new;
+	t_vec		origin;
+	t_vec		orient;
+	t_vec		point;
+	t_vec		point_orient;
+	double		time;
+}				t_ray;
 
-	new = (t_sphere *)ptr;
-	new->origin = ft_vec_add(new->origin, src);
-}
+

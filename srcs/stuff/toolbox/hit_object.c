@@ -6,8 +6,13 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 18:18:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/23 18:19:02 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/26 17:59:08 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
 
+void	hit_sp(void *ptr, t_ray *ray, t_vec *color)
+{
+	
+}
