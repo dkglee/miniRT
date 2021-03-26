@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 16:42:17 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/21 17:06:48 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/26 16:35:36 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(int argc, char **argv)
 
 	init_render(&render);
 	parsing(&render, argc, argv);
-	if (validate_parse(&render))
+	if (!validation_parse(&render))
 		error("Create World Error", clear_render, &render);
 	start_render(&render);
 	return (0);

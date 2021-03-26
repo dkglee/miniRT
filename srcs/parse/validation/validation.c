@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:12:54 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 14:57:11 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/26 16:35:27 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,25 @@ bool	validation_float(char **info)
 		idx++;
 	}
 	return (flag);
+}
+
+bool	validation_parse(t_render *render)
+{
+	double	ratio;
+	t_cam	*cam;
+
+	if (render->trace.width <= 0 ||
+			render->trace.height <= 0 ||
+			render->stuff.cam == NULL ||
+			render->stuff.amb_light == NULL)
+		return (false);
+	ratio = (double)render->trace.width / (double)render->trace.height;
+	cam = render->stuff.cam;
+	while (cam != NULL)
+	{
+		cam->viewport_ratio = ratio;
+		refresh_cam(cam);
+		cam = cam->next;
+	}
+	return (true);
 }
