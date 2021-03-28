@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 17:28:43 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/25 18:12:49 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/28 21:37:34 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_cam	*add_cam(t_cam **head, t_vec origin, t_vec orient, double fov)
 	cam->tilt = asin(orient.z);
 	cam->pan = acos(orient.y / cos(cam->tilt));
 	cam->viewport_ratio = DEFAULT_VIEWPORT_RATIO;
-	refresh_cam(cam);
 	cam->next = *head;
 	*head = cam;
 	return (cam);

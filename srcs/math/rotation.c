@@ -6,54 +6,70 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 18:11:05 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/26 17:24:50 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/28 18:10:10 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec	rotation(t_rot rotation, t_vec u)
+double	ft_vec_dis(t_vec v, t_vec u)
 {
-	t_vec	v;
+	double	d;
 
-	v.x = dot_vec(rotation.r1, u);
-	v.y = dot_vec(rotation.r2, u);
-	v.z = dot_vec(rotation.r3, u);
-	return (v);
+	d = sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y 2) + pow(p2.z - p1.z, 2));
+	return (d);
 }
 
-t_vec	rotation_x(t_vec src, double degree)
+t_vec	rotation_x(t_vec v, double degree)
 {
-	t_vec	dest;
-	double	rad;
+	t_vec	row1;
+	t_vec	row2;
+	t_vec	row3;
+	t_vec	rotated;
+	double	rad_angle;
 
-	rad = ft_cal_rad(degree);
-	dest.x = src.x;
-	dest.y = src.y * cos(rad) - src.z * sin(rad);
-	dest.z = src.y * sin(rad) + src.z * cos(rad);
-	return (dest);
+	rad_angle = ft_cal_rad(degree);
+	row1 = (t_vec){1, 0, 0};
+	row2 = (t_vec){0, cos(rad_angle), -sin(rad_angle)};
+	row3 = (t_vec){0, sin(rad_angle), cos(rad_angle)};
+	rotated.x = v.x * row1.x + v.y * row1.y + v.z * row1.z;
+	rotated.y = v.x * row2.x + v.y * row2.y + v.z * row2.z;
+	rotated.z = v.x * row3.x + v.y * row3.y + v.z * row3.z;
+	return (rotated);
 }
 
-t_vec	rotation_y(t_vec src, double degree)
+t_vec	rotation_y(t_vec v, double degree)
 {
-	t_vec	dest;
-	double	rad;
+	t_vec	row1;
+	t_vec	row2;
+	t_vec	row3;
+	t_vec	rotated;
+	double	rad_angle;
 
-	rad = ft_cal_rad(degree);
-	dest.x = src.x * cos(rad) + src.z * sin(rad);
-	dest.y = src.y;
-	dest.z = -1.0 * src.x * sin(rad) + src.z * cos(rad);
-	return (dest);
+	rad_angle = ft_cal_rad(degree);
+	row1 = (t_vec){cos(rad_angle, 0, sin(rad_angle)};
+	row2 = (t_vec){0, 1, 0};
+	row3 = (t_vec){-sin(rad_angle), 0, cos(rad_angle)};
+	rotated.x = v.x * row1.x + v.y * row1.y + v.z * row1.z;
+	rotated.y = v.x * row2.x + v.y * row2.y + v.z * row2.z;
+	rotated.z = v.x * row3.x + v.y * row3.y + v.z * row3.z;
+	return (rotated);
 }
 
-t_vec	rotation_z(t_vec src, double degree)
+t_vec	rotation_z(t_vec v, double degree)
 {
-	t_vec	dest;
-	double	rad;
+	t_vec	row1;
+	t_vec	row2;
+	t_vec	row3;
+	t_vec	rotated;
+	double	rad_angle;
 
-	rad = ft_cal_rad(degree);
-	dest.x = src.x * cos(rad) - src.y * sin(rad);
-	dest.y = src.x * sin(rad) + src.y * cos(rad);
-	dest.z = src.z;
-	return (dest);
+	rad_angle = ft_cal_rad(degree);
+	row1 = (t_vec){cos(rad_angle), -sin(rad_angle), 0};
+	row2 = (t_vec){sin(rad_angle), cos(rad_angle), 0};
+	row3 = (t_vec){0, 0, 1};
+	rotated.x = v.x * row1.x + v.y * row1.y + v.z * row1.z;
+	rotated.y = v.x * row2.x + v.y * row2.y + v.z * row2.z;
+	rotated.z = v.x * row3.x + v.y * row3.y + v.z * row3.z;
+	return (rotated);
 }
