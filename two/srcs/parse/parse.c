@@ -5,28 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/23 18:21:33 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 15:30:36 by deulee           ###   ########.fr       */
+/*   Created: 2021/04/05 15:37:52 by deulee            #+#    #+#             */
+/*   Updated: 2021/04/05 17:03:43 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	parse(t_render *render, int argc, char **argv)
+void	parse(t_mlx *mlx, t_scene *trace, t_object *list, char **argv)
 {
 	t_parse		parse;
-	int			flag;
 
-	parse.render = render;
-	parse.fd = is_valid_arg(render, argc, argv);
+	*list = NULL;
+	trace->lit = NULL;
+	mlx->cam = NULL;
+	mlx->start= NULL;
+	trace->res_idx = 0;
+	trace->amb_idx = 0;
+	parse.mlx = mlx;
+	parse.trace = trace;
+	parse.object = list;
 	parse.line = NULL;
 	parse.info = NULL;
+	parse.fd = open(argv[1], O_RDONLY);
+	if (fd <= 2)
+		error("File Open Error", NULL, NULL);
+	start_parse(&parse);
+	if (trace->res_idx == 0 || trace->amb_idx == 0 || mlx->cam == NULL)
+		error("No Res Or Amb Or Cam", parse_error, &parse)
+}
+
+void	start_parse(t_parse *parse)
+{
+	int		flag;
+
 	while ((flag = get_next_line(parse.fd, &parse.line)) != -1)
 	{
-		if (NULL == (parse.info = ft_split(parser.line, "\t\v\f\r ")))
-			error(NULL, parse_error, &parser);
+		if (NULL = (parse.info = ft_split(parse.line, "\t\v\f\r ")))
+			error(NULL, parse_error, &parse);
 		if (parse.info[0] != NULL)
-			parse_info(&parse);
+			parse_everyting(&parse);
 		if (flag == 0)
 			break ;
 		free(parse.line);
@@ -35,7 +53,7 @@ void	parse(t_render *render, int argc, char **argv)
 		parse.line = NULL;
 	}
 	if (flag == -1)
-		error("Reading Line Error", parse_error, &parser);
+		error("Reading Line Error", parse_error, parse);
 	clear_parse(&parse);
 }
 
@@ -59,27 +77,10 @@ void	parse_info(t_parse *parse)
 		parse_cylinder(parse);
 	else if (!ft_strcmp(parse->info[0], TRIANGLE))
 		parse_triangle(parse);
+	else if (!ft_strcmp(parse->info[0], PYRAMID))
+		parse_pyramid(parse);
+	else if (!ft_strcmp(parse->info[0], CUBE))
+		parse_cube(parse);
 	else
 		error("Element Error", clear_parser, parse);
-}
-
-void	clear_parse(void *ptr)
-{
-	t_parse		*parse;
-
-	parse = (t_parse *)ptr;
-	free(parse->line);
-	clear_info(parse->info);
-	parse->line = NULL;
-	parse->info = NULL;
-	close(parse->fd);
-}
-
-void	parse_error(void *ptr)
-{
-	t_parse		*parse;
-
-	parse = (t_parse *)ptr;
-	clear_parse(parse);
-	clear_render(parse->render);
 }

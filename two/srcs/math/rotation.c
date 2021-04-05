@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 18:11:05 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/28 18:10:10 by deulee           ###   ########.fr       */
+/*   Updated: 2021/03/31 02:05:40 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_vec	rotation_y(t_vec v, double degree)
 	double	rad_angle;
 
 	rad_angle = ft_cal_rad(degree);
-	row1 = (t_vec){cos(rad_angle, 0, sin(rad_angle)};
+	row1 = (t_vec){cos(rad_angle), 0, sin(rad_angle)};
 	row2 = (t_vec){0, 1, 0};
 	row3 = (t_vec){-sin(rad_angle), 0, cos(rad_angle)};
 	rotated.x = v.x * row1.x + v.y * row1.y + v.z * row1.z;

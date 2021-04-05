@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:41:38 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 15:57:02 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/05 17:29:49 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,18 @@ bool	parse_vec(char *info, t_vec *v)
 	clear_info(split);
 	split = NULL;
 	return (flag);
+}
+
+int		get_color(t_vec color)
+{
+	int		r;
+	int		g;
+	int		b;
+
+	r = color.x;
+	r <<= 16;
+	g = color.y;
+	g <<= 8;
+	b = color.z;
+	return (r | g | b);
 }
