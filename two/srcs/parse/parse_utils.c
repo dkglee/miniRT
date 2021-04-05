@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:41:38 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/05 23:19:05 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/06 00:05:05 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,13 @@ int		get_color(t_vec color)
 	int		g;
 	int		b;
 
-	r = color.x;
+	r = 0;
+	g = 0;
+	b = 0;
+	r |= color.x;
 	r <<= 16;
-	g = color.y;
+	g |= color.y;
 	g <<= 8;
-	b = color.z;
+	b |= color.z;
 	return (r | g | b);
 }

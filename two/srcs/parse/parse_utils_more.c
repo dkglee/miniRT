@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:08:14 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/05 23:18:41 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/06 00:17:16 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,15 @@ void	clear_info(char **info)
 		i++;
 	}
 	free(info);
+}
+
+t_object	*ft_new_object(t_parse *parse)
+{
+	t_object	*new;
+
+	new = (t_object *)malloc(sizeof(t_object));
+	if (new == NULL)
+		error("Object Malloc Error", parse_error, parse);
+	ft_lstadd_back(&parse->object, new);
+	return (new);
 }
