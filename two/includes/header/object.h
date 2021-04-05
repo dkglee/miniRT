@@ -6,14 +6,14 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 14:40:44 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/05 14:48:08 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/06 00:41:55 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_H
 # define OBJECT_H
 
-typedef	struct		s_square
+typedef	struct		s_sq
 {
 	t_vec			half_size;
 	t_vec			floor;
@@ -22,15 +22,15 @@ typedef	struct		s_square
 
 typedef struct		s_cube
 {
-	t_obj			sq;
+	t_object		sq;
 	t_vec			center;
 	t_vec			normal[6];
 }					t_cube;
 
 typedef	struct		s_pyramid
 {
-	t_obj			sq;
-	t_obj			tr;
+	t_object		sq;
+	t_object		tr;
 	t_vec			center;
 	t_vec			normal[5];
 	t_vec			corner[4];
