@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 15:37:52 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/05 17:03:43 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/05 22:06:40 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	parse(t_mlx *mlx, t_scene *trace, t_object *list, char **argv)
 {
 	t_parse		parse;
 
-	*list = NULL;
-	trace->lit = NULL;
+	list = NULL;
+	trace->light = NULL;
 	mlx->cam = NULL;
 	mlx->start= NULL;
 	trace->res_idx = 0;

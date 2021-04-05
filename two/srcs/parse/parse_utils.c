@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:41:38 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/05 17:29:49 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/05 23:19:05 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,6 @@ int		count_info(char **info)
 	while (info[idx])
 		idx++;
 	return (idx);
-}
-
-void	clear_info(char **info)
-{
-	int		i;
-
-	i = 0;
-	while (info[i])
-	{
-		free(info[i]);
-		i++;
-	}
-	free(info);
 }
 
 bool	parse_double(char *info, double *value)
@@ -70,6 +57,24 @@ bool	parse_vec(char *info, t_vec *v)
 		v->y = ft_atof(split[1]);
 		v->z = ft_atof(split[2]);
 	}
+	clear_info(split);
+	split = NULL;
+	return (flag);
+}
+
+bool	parse_int(char *info, int *value)
+{
+	bool	flag;
+	char	**split;
+
+	flag = true;
+	split = ft_split(info, ",");
+	if (count_info(split) != 1)
+	{
+		flag = false;
+		return (flag);
+	}
+	*value = ft_atoi(info);
 	clear_info(split);
 	split = NULL;
 	return (flag);

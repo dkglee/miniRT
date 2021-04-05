@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:51:49 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/05 15:15:09 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/05 22:05:48 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	else if (argv[1][size - 3] != '.' || argv[1][size - 2] != 'r' ||
 			argv[1][size - 1] != 't')
 		error("Filename Extension Error", NULL, NULL);
-	parse(&mlx, &trace, &list, argv);
+	parse(&mlx, &trace, list, argv);
 	init_mlx(&mlx, &data);
 	init_render(mlx, data, list, render);
 	multithread_render(render);

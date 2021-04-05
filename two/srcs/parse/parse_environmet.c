@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:21:50 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/05 20:44:53 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/05 22:13:17 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	parse_cam(t_parse *parse)
 	t_cam	*new;
 	t_cam	*begin;
 
-	begin = mlx->cam; 
+	begin = parse->mlx->cam; 
 	new = (t_cam *)malloc(sizeof(t_cam));
 	if (new == NULL)
 		error("Cam Malloc Error", parse_error, parse);
@@ -65,11 +65,36 @@ void	parse_cam(t_parse *parse)
 		error("Cam Information Number Error", parse_error, parse);
 	if (!validatoin_extraction(parse->info))
 		error("Cam Information Error", parse_error, parse);
-	if (!parse_vec(info[0], &new->o) ||
-			!parse_vec(info[1], &new->nv) ||
-			!parse_double(info[2], &new->fov) ||
+	if (!parse_vec(parse->info[0], &new->o) ||
+			!parse_vec(parse->info[1], &new->nv) ||
+			!parse_double(parse->info[2], &new->fov) ||
 			!validation(&new->nv, new->fov))
 		error("Cam Parse Error", parse_error, parse);
 	new->nv = ft_vec_unit(new->nv);
-	mlx->cam = begin ? begin : new;
+	parse->mlx->cam = begin ? begin : new;
+}
+
+void	parse_light(t_parse *parse)
+{
+	t_light	*new;
+	t_light *begin;
+	t_vec	color;
+
+	begin = parse->trace->light;
+	new = (t_light *)malloc(sizeof(t_light));
+	if (new == NULL)
+		error("Light Malloc Error", parse_error, parse);
+	new->next = NULL;
+	ft_lstadd_back(&parse->trace->light, new);
+	if (count_info(parse->info++) != 4)
+		error("Light Information Number Error", parse_error, parse);
+	if (!validation_extraction(parse->info))
+		error("Light Information Error", parse_error, parse);
+	if (!parse_vec(parse->info[0], &new->o) ||
+			!parse_double(parse->info[1], &new->br) ||
+			!parse_color(parse->info[2], &color) ||
+			!validation_light(new_br, &color))
+		error("Light Parse Error", parse_error, parse);
+	new->color = get_color(color);
+	parse->trace->light = begin ? begin : new;
 }

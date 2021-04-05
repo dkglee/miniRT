@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/05 16:54:34 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/05 23:11:19 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,9 @@ typedef	struct		s_object
 	int				flag;
 	t_figures		fig;
 	int				color;
+	t_vec			rgb_color;
 	int				specular;
-	double			reflx;
+	double			reflec;
 	double			refrac;
 	int				texture;
 	t_vec			normal;
@@ -133,7 +134,7 @@ typedef	struct		s_scene
 	double			x_res;
 	double			y_res;
 	int				cam_nb;
-	t_light			*lit;
+	t_light			*light;
 	int				res_idx;
 	int				amb_idx;
 	double			amb_light;
