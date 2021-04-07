@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:12:54 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/05 23:52:23 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/06 16:40:10 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,19 @@ bool	validation_range(double num, double min, double max)
 	if (num < min || nb > max)
 		return (false);
 	return (true);
+}
+
+bool	validation_sqaure(t_object *o)
+{
+	bool	flag;
+
+	flag = validation_range(o->fig.sq.side, 0, INFINITY);
+	flag = validation_range(o->specular, 0, INFINITY);
+	flag = validation_range(o->reflec, 0, 1);
+	flag = validation_range(o->refrac, 0, INFINITY);
+	flag = validation_range(o->texture, 0, 5);
+	flag = validation_range(o->rgb_color.x, 0, 255);
+	flag = validation_range(o->rgb_color.y, 0, 255);
+	flag = validation_range(o->rgb_color.z, 0, 255);
+	return (flag);
 }

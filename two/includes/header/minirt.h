@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/05 23:11:19 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/06 23:00:31 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,14 @@ typedef	struct		s_object
 	struct s_object	*next;
 }					t_object;
 
-typedef	struct		s_rss
+typedef	struct		s_tmp
 {
 	double			x_res;
 	double			y_res;
 	int				i;
 	int				j;
 	int				limit;
-}
+}					t_tmp;
 
 typedef	struct		s_cam
 {
@@ -114,7 +114,7 @@ typedef	struct		s_cam
 	t_vec			nv;
 	int				fov;
 	void			*img;
-	char			*addr;
+	int				*addr;
 	int				bits_per_pixel;
 	int				size_line;
 	int				endian;
@@ -153,7 +153,7 @@ typedef	struct		s_bmp
 typedef	struct		s_render
 {
 	t_mlx			mlx;
-	t_scene			data;
+	t_scene			trace;
 	t_obj			*list;
 	int				idx;
 	int				i;
