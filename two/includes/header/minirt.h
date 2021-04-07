@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/06 23:00:31 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:51:43 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@
 # define OBJ_MODE 9
 # define LIT_MODE 10
 
-typedef	struct		s_vec3
+typedef	struct		s_ray
 {
-	t_vec			orig;
+	t_vec			origin;
 	t_vec			dir;
-}
+}					t_ray;
 
 typedef	struct		s_mlx
 {
@@ -154,7 +154,7 @@ typedef	struct		s_render
 {
 	t_mlx			mlx;
 	t_scene			trace;
-	t_obj			*list;
+	t_object		*list;
 	int				idx;
 	int				i;
 	int				j;

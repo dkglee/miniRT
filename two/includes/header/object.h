@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 14:40:44 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/06 00:41:55 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/07 17:02:31 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ typedef	struct		s_sq
 {
 	t_vec			half_size;
 	t_vec			floor;
-	t_vec			center;
+	t_vec			center_to_point;
 }					t_sq;
 
 typedef struct		s_cube
