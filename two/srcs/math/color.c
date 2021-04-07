@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:48:28 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/06 21:19:03 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/07 11:07:55 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		color_difference(int x, int y)
 	b[1] = y & mask;
 	distance_power2 = pow((r[1] - r[0]), 2) + pow((g[1] - g[0], 2)) +
 		pow((b[1] - b[0]), 2);
-	return (distance_power2 > 1000);
+	return (distance_power2);
 }
 
 int		color_light(int color, t_vec rgb)
