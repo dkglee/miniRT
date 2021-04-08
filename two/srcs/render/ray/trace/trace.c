@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:24:36 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/07 16:01:48 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/09 00:07:52 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,7 @@ int		ray_trace(t_vec origin, t_vec dir, t_render *render, int depth)
 	closet_dis = INFINITY;
 	cl_fig.flag = -1;
 	find_intersection(ray, render->list, &closet_obj, &closet_dis);
+	inter.p = ft_vec_add(origin, ft_vec_product(closet_dis, dir));
+	inter.normal = calc_normal(inter.p, dir, &closet_obj);
+	inter.color = closet_obj.flag != -1 ? closet_obj.color : render->trace.bgr;
 }
