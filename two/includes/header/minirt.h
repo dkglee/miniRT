@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/07 14:51:43 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/13 15:59:42 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,13 +142,13 @@ typedef	struct		s_scene
 	int				bgr;
 }					t_scene;
 
-typedef	struct		s_bmp
+typedef	struct		s_bmpheader
 {
-	char			type[2];
-	unsigned int	size;
-	unsigned int	reserved;
-	unsigned int	offest;
-}					t_bmp;
+	char			bftype[2];
+	unsigned int	bfsize;
+	unsigned int	bfreserved;
+	unsigned int	bfoffbits;
+}					t_bmpheader;
 
 typedef	struct		s_render
 {
@@ -169,20 +169,20 @@ typedef	struct		s_inter
 	t_vec			ref_vec;
 }					t_inter;
 
-typedef	struct		s_heading
+typedef	struct		s_bmpinfhead
 {
-	unsigned int	size;
-	double			width;
-	double			height;
+	unsigned int	bisize;
+	double			biwidth;
+	double			biheight;
 	unsigned int	bpp;
-	unsigned int	colplanes;
-	unsigned int	compression;
-	unsigned int	img_size;
-	int				x_ppm;
-	int				y_ppm;
-	unsigned int	color_nb;
-	unsigned int	import_color;
-}					t_heading;
+	unsigned int	bicolplanes;
+	unsigned int	bicompression;
+	unsigned int	bisize_img;
+	int				bix_ppm;
+	int				biy_ppm;
+	unsigned int	bicolor_used;
+	unsigned int	biimport_color;
+}					t_bmpinfhead;
 
 typedef	struct		s_parse
 {
