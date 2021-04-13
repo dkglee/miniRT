@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/13 15:59:42 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/14 01:06:37 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ typedef	struct		s_bmpinfhead
 	unsigned int	bisize;
 	double			biwidth;
 	double			biheight;
-	unsigned int	bpp;
+	unsigned int	bibitcount;
 	unsigned int	bicolplanes;
 	unsigned int	bicompression;
 	unsigned int	bisize_img;
