@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 19:30:18 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/07 11:10:34 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/17 17:54:00 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,40 @@ int		find_pixel_color(t_render *render)
 			(color_difference(color[1], color[2]) > 1000))
 		return (super_sample(color, tmp, render));
 	return (cal_avg_ssaa_color(color));
+}
+
+void	render_error(void *ptr)
+{
+	t_render *render;
+
+	render = (t_render *)ptr;
+	clear_render(render);
+}
+
+void	clear_render(t_render *render)
+{
+	void	*temp;
+
+	while (render->list)
+	{
+		temp = (void *)render->list->next;
+		free(render->list);
+		render->list = (t_object *)temp;
+	}
+	render->list = NULL;
+	while (render->mlx.cam)
+	{
+		temp = (void *)render->mlx.cam->next;
+		free(render->mlx.cam);
+		render->mlx.cam = (t_cam *)temp;
+	}
+	render->mlx.cam = NULL;
+	while (render->trace.light)
+	{
+		temp = (void *)render->trace.light->next;
+		free(render->trace.light);
+		render->trace.light = (t_light *)temp;
+	}
+	temp = NULL;
+	render->trace.light = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:11:17 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/07 11:23:47 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/17 17:39:17 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,52 @@ int		calc_avg_ssaa_color(int *color)
 		ssaa_color[i] /= 4;
 	free(color);
 	return ((ssaa_color[0] << 16) | (ssaa_color[1] << 8) | ssaa_color[2]);
+}
+
+int		close_minirt(t_render *render)
+{
+	clear_render(render);
+	exit(EXIT_SUCCESS);
+	return (1);
+}
+
+int		change_cam(int key, t_render *render)
+{
+	if (key == ESC_KEY)
+	{
+		clear_render(render);
+		exit(0);
+	}
+	if (key == SP_KEY)
+	{
+		if (render->mlx->cam->next == NULL)
+		{
+			render->mlx->cam = render->mlx->start;
+			mlx_put_image_to_window(
+					render->mlx->mlx_ptr, render->mlx->win_ptr,
+					render->mlx->cam->img, 0, 0);
+		}
+		else
+		{
+			render->mlx->cam = render->mlx->cam->next;
+			mlx_put_image_to_window(
+					render->mlx->mlx_ptr, render->mlx->win_ptr, 
+					render->mlx->cam->img, 0, 0);
+		}
+		return (1);
+	}
+	return (0);
+}
+
+void	graphic_loop_mlx(t_render *render)
+{
+	mlx.win_ptr = mlx_new_window(render->mlx.mlx_ptr, render->trace.x_res, 
+			render->trace.y_res, "miniRT");
+	mlx_put_image_to_window(render->mlx.mlx_ptr, render->mlx.win_ptr,
+			render->mlx.cam->img, 0, 0);
+	mlx_hook(render->mlx.win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK,
+			close_minirt, 0);
+	mlx_hook(render->mlx.win_ptr, KEYPRESS, KEYPRESSMASK,
+			change_cam, render);
+	mlx_loop(render->mlx.mlx_ptr);
 }

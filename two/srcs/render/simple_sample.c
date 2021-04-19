@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:25:16 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/12 15:31:51 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/16 14:57:35 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		sample_first(int *edge, int last[2], t_tmp tmp, t_render *render)
 	color = NULL;
 	color = (int *)malloc(sizeof(int) * 4);
 	if (color == NULL)
-		error("Malloc Error", render_error, render);
+		error("Malloc Error", NULL, NULL);
 	if (tmp.j == render->trace.y_res / NUM_THREADS * render->idx)
 	{
 		color[0] = calc_ray(0, tmp, render);
@@ -49,7 +49,7 @@ int		sample_center(int *edge, int last[2], t_tmp tmp, t_render *render)
 	color = NULL;
 	color = (int *)malloc(sizeof(int) * 4);
 	if (color == NULL)
-		error("Malloc Error", render_error, render);
+		error("Malloc Error", NULL, NULL);
 	if (tmp.j == render->trace.y_res / NUM_THREADS * render->idx)
 	{
 		color[0] = last[0];
@@ -79,7 +79,7 @@ int		sample_last(int *edge, int last[2], t_tmp tmp, t_render *render)
 	color = NULL;
 	color = (int *)malloc(sizeof(int) * 4);
 	if (color == NULL)
-		error("Malloc Error", render_error, render);
+		error("Malloc Error", NULL, NULL);
 	if (tmp.j == render->trace.y_res / NUM_THREADS * render->idx)
 	{
 		color[0] = last[0];

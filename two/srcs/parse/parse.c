@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 15:37:52 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/05 22:06:40 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/16 14:59:36 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ void	parse_info(t_parse *parse)
 	else if (!ft_strcmp(parse->info[0], CUBE))
 		parse_cube(parse);
 	else
-		error("Element Error", clear_parser, parse);
+		error("Element Error", clear_parse, parse);
 }

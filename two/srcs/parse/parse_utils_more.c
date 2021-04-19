@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:08:14 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/06 00:17:16 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/16 14:43:53 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_object	*ft_new_object(t_parse *parse)
 
 	new = (t_object *)malloc(sizeof(t_object));
 	if (new == NULL)
-		error("Object Malloc Error", parse_error, parse);
+		error("Object Malloc Error", NULL, NULL);
 	ft_lstadd_back(&parse->object, new);
 	return (new);
 }

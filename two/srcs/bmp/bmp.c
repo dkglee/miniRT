@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 20:46:17 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/14 01:25:26 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/16 14:32:59 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,22 @@ char	*write_contents(t_mlx mlx, t_scene trace)
 	int		size;
 	int		i;
 	int		j;
+	int		mask;
 
 	i = 0;
 	j = 0;
+	mask = 255;
 	data = (char *)malloc(mlx.cam->size_line * trace.y_res);
 	if (data == NULL)
 		error("Malloc Error", NULL, NULL);
 	size = trace.x_res * trace.y_res;
 	while (i < size)
 	{
-		
+		data[j++] = mlx.cam->addr[i] & mask;
+		data[j++] = (mlx.cam->addr[i] & (mask << 8)) >> 8;
+		data[j++] = (mlx.cam->addr[i] & (mask << 16)) >> 16;
+		data[j++] = 0;
+		i++;
 	}
 	return (data);
 }

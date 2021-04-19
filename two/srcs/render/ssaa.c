@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 15:48:15 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/12 16:53:41 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/16 14:58:23 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ssaa_zero(int *color, int c_col, t_tmp tmp, t_render *render)
 
 	subtable = (int *)malloc(sizeof(int) * 4);
 	if (subtable == NULL)
-		error("Malloc Error", sample_error, render);
+		error("Malloc Error", NULL, NULL);
 	subtable[0] = color[0];
 	subtable[1] = calc_ray(1, tmp, render);
 	subtable[2] = calc_ray(3, tmp, render);
@@ -43,7 +43,7 @@ int		ssaa_one(int *color, int c_col, t_tmp tmp, t_render *render)
 
 	subtable = (int *)malloc(sizeof(int) * 4);
 	if (subtable == NULL)
-		error("Malloc Error", sample_error, render);
+		error("Malloc Error", NULL, NULL);
 	subtable[0] = calc_ray(3, tmp, render);
 	subtable[1] = color[1];
 	subtable[2] = center;
@@ -65,7 +65,7 @@ int		ssaa_two(int *color, int c_col, t_tmp tmp, t_render *render)
 
 	subtable = (int *)malloc(sizeof(int) * 4);
 	if (subtable == NULL)
-		error("Malloc Error", sample_error, render);
+		error("Malloc Error", NULL, NULL);
 	subtable[0] = calc_ray(3, tmp, render);
 	subtable[1] - c_col;
 	subtable[2] = color[2];
@@ -87,7 +87,7 @@ int		ssaa_three(int *color, int c_col, t_tmp tmp, t_render *render)
 
 	subtable = (int *)malloc(sizeof(int) * 4);
 	if (subtable == NULL)
-		error("Malloc Error", sample_error, render);
+		error("Malloc Error", NULL, NULL);
 	subtable[0] = c_col;
 	subtable[1] = calc_ray(5, tmp, render);
 	subtable[2] = calc_ray(7, tmp, render);

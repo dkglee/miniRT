@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:51:49 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/06 20:19:28 by deulee           ###   ########.fr       */
+/*   Updated: 2021/04/17 17:30:44 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ int		main(int argc, char **argv)
 	init_render(mlx, data, list, render);
 	multithread_render(render);
 	if (argc == 3)
-		bmp_making(mlx, data, av[1]);
-	graphic_loop(mlx, data);
+	{
+		bmp_making(mlx, data, argv[1]);
+		clear_render(&render[0]);
+	}
+	graphic_loop_mlx(&render[0]);
 	return (0);
 }
