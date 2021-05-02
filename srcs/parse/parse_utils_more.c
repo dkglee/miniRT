@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:08:14 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/16 14:43:53 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/02 21:51:22 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,24 @@ t_object	*ft_new_object(t_parse *parse)
 	new = (t_object *)malloc(sizeof(t_object));
 	if (new == NULL)
 		error("Object Malloc Error", NULL, NULL);
-	ft_lstadd_back(&parse->object, new);
+	ft_objadd_back(&parse->object, new);
 	return (new);
+}
+
+void	ft_objadd_back(t_object **head, t_object *new)
+{
+	t_object	*fin;
+
+	if (!(head) || !(new))
+		return ;
+	if (*head == NULL)
+	{
+		*head = new;
+		return ;
+	}
+	fin = *head;
+	while (fin->next != NULL)
+		fin = fin->next;
+	new->next = fin->next;
+	fin->next = new;
 }
