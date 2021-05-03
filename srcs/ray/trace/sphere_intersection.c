@@ -6,13 +6,13 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:02:08 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/07 16:34:34 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/03 17:31:57 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void		intersection_sphere(double dis[2], t_vec origin, t_vec dir, t_object *list)
+void		intersection_sphere(double dis[2], t_vec origin, t_vec dir, t_object *list)
 {
 	double	discriminant;
 	t_vec	oc;
