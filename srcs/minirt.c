@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:51:49 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/17 17:30:44 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/07 08:03:36 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_mlx(t_mlx *mlx, t_scene *trace)
 	double	win_height;
 
 	mlx->mlx_ptr = mlx_init();
-//	if (OS_NAME == 2)
+//	if (OS_NAME == 2) HAVE TO DELETE
 //	{
 		mlx_get_screen_size(mlx->mlx_ptr, &win_weight, &win_height);
 		trace->x_res = trace->x_res < win_weight ? trace->x_res : win_weight;
