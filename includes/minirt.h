@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 23:27:30 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 23:47:50 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,20 +259,20 @@ void				init_mlx(t_mlx *mlx, t_scene *trace);
 
 /* parse */
 
-void				parse_cube(t_parse *parse);
-void				parse_pyramid(t_parse *parse);
+void				parse_cube(t_parse *parse, t_object *list);
+void				parse_pyramid(t_parse *parse, t_object *list);
 void				parse(t_mlx *mlx, t_scene *trace, t_object *list, char **argv);
-void				start_parse(t_parse *parse);
-void				parse_info(t_parse *parse);
+void				start_parse(t_parse *parse, t_object *list);
+void				parse_info(t_parse *parse, t_object *list);
 void				parse_resolution(t_parse *parse);
 void				parse_amb_light(t_parse *parse);
 void				parse_cam(t_parse *parse);
 void				parse_light(t_parse *parse);
-void				parse_sphere(t_parse *parse);
-void				parse_plane(t_parse *parse);
-void				parse_square(t_parse *parse);
-void				parse_triangle(t_parse *parse);
-void				parse_cylinder(t_parse *parse);
+void				parse_sphere(t_parse *parse, t_object *list);
+void				parse_plane(t_parse *parse, t_object *list);
+void				parse_square(t_parse *parse, t_object *list);
+void				parse_triangle(t_parse *parse, t_object *list);
+void				parse_cylinder(t_parse *parse, t_object *list);
 int					count_info(char **info);
 bool				parse_double(char *info, double *value);
 bool				parse_vec(char *info, t_vec *v);
@@ -283,7 +283,7 @@ void				ft_addlight_back(t_light **head, t_light *new);
 void				clear_parse(void *ptr);
 void				parse_error(void *ptr);
 void				clear_info(char **info);
-t_object			*ft_new_object(t_parse *parse);
+t_object			*ft_new_object(t_object *list);
 void				ft_objadd_back(t_object **head, t_object *new);
 
 /* parse validation */

@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 15:37:52 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 23:35:15 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 23:49:16 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,29 @@ void	parse(t_mlx *mlx, t_scene *trace, t_object *list, char **argv)
 		error("File Open Error", NULL, NULL);
 	start_parse(&parse, list);
 	if (trace->res_idx == 0 || trace->amb_idx == 0 || mlx->cam == NULL)
-		error("No Res Or Amb Or Cam", parse_error, &parse)
+		error("No Res Or Amb Or Cam", parse_error, &parse);
 }
 
 void	start_parse(t_parse *parse, t_object *list)
 {
 	int		flag;
 
-	while ((flag = get_next_line(parse.fd, &parse.line)) != -1)
+	while ((flag = get_next_line(parse->fd, &(parse->line))) != -1)
 	{
-		if (NULL = (parse.info = ft_split(parse.line, "\t\v\f\r ")))
-			error(NULL, parse_error, &parse);
-		if (parse.info[0] != NULL)
-			parse_info(&parse, t_object *list);
+		if (NULL == (parse->info = ft_split(parse->line, "\t\v\f\r ")))
+			error(NULL, parse_error, parse);
+		if (parse->info[0] != NULL)
+			parse_info(parse, list);
 		if (flag == 0)
 			break ;
-		free(parse.line);
-		clear_info(parse.info);
-		parse.info = NULL;
-		parse.line = NULL;
+		free(parse->line);
+		clear_info(parse->info);
+		parse->info = NULL;
+		parse->line = NULL;
 	}
 	if (flag == -1)
 		error("Reading Line Error", parse_error, parse);
-	clear_parse(&parse);
+	clear_parse(parse);
 }
 
 void	parse_info(t_parse *parse, t_object *list)
