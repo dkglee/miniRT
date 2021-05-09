@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 12:46:26 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/28 17:54:46 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 23:31:38 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ t_vec	ft_vec_unit(t_vec u)
 
 double	ft_vec_size(t_vec v)
 {
-	return (sqrt(dot(v, v)));
+	return (sqrt(ft_vec_dot(v, v)));
 }
 
 double	ft_vec_cos(t_vec v, t_vec u)
 {
-	return (dot(v, u) / (ft_vec_size(v) * ft_vec_size(u)));
+	return (ft_vec_dot(v, u) / (ft_vec_size(v) * ft_vec_size(u)));
 }
 
 double	ft_vec_sin(t_vec v, t_vec u)

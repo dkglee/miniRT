@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 20:46:17 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/16 14:32:59 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 23:26:34 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		create_fd(char *name)
 	int		start;
 	char	*tmp_name;
 	char	*file_name;
+	int		fd;
 
 	i = 0;
 	start = 0;
@@ -40,7 +41,7 @@ int		create_fd(char *name)
 	return (fd);
 }
 
-void	create_header(t_scene trace, t_bmpheader *head, t_bmpinfhead *info)
+void	create_header(t_scene trace, t_bmpheader *header, t_bmpinfhead *info)
 {
 	header->bftype[0] = 0x42;
 	header->bftype[1] = 0x4D;
@@ -54,13 +55,13 @@ void	create_header(t_scene trace, t_bmpheader *head, t_bmpinfhead *info)
 	info->bibitcount = 32;
 	info->bicompression = 0;
 	info->bisize_img = (trace.x_res * trace.y_res * 4);
-	info->bix_ppm 2835;
+	info->bix_ppm = 2835;
 	info->biy_ppm = 2835;
 	info->bicolor_used = 0;
 	info->biimport_color = 0;
 }
 
-void	write_head(int fd, t_bmpheader head, t_bmpinfhead info)
+void	write_head(int fd, t_bmpheader header, t_bmpinfhead info)
 {
 	write(fd, &header.bftype, 2);
 	write(fd, &header.bfsize, 4);

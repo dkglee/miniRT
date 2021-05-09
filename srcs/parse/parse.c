@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 15:37:52 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 23:05:29 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 23:35:15 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	parse(t_mlx *mlx, t_scene *trace, t_object *list, char **argv)
 	trace->amb_idx = 0;
 	parse.mlx = mlx;
 	parse.trace = trace;
-	parse.object = &list;
+	parse.list = &list;
 	parse.line = NULL;
 	parse.info = NULL;
 	parse.fd = open(argv[1], O_RDONLY);
-	if (fd <= 2)
+	if (parse.fd <= 2)
 		error("File Open Error", NULL, NULL);
 	start_parse(&parse, list);
 	if (trace->res_idx == 0 || trace->amb_idx == 0 || mlx->cam == NULL)

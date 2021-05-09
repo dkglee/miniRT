@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 22:44:40 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 23:27:30 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "error.h"
 # include "rotation.h"
 # include <stdio.h>
+# include <errno.h>
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>

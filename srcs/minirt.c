@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:51:49 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 23:11:09 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 23:24:25 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ int		mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey)
 
 #endif
 
+void	check_arg(int argc, char **argv)
+{
+	if (!(argc == 2 || argc == 3) || (argc == 3 && ft_strcmp("--save", argv[2])))
+		error("Wrong Argument", NULL, NULL);
+}
+
 int		main(int argc, char **argv)
 {
 	t_render	render[NUM_THREADS];
@@ -55,8 +61,7 @@ int		main(int argc, char **argv)
 	int			size;
 
 	list = NULL;
-	if (!(argc == 2 || argc == 3) || (argc == 3 && ft_strcmp("--save", argv[2])))
-		error("Wrong Argument", NULL, NULL);
+	check_arg(argc, argv);
 	size = ft_strlen(argv[1]);
 	if (size < 3)
 		error("Filename Extension Error", NULL, NULL);

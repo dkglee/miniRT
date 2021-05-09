@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 18:11:05 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/06 20:48:15 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 23:30:46 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ double	ft_vec_dis(t_vec v, t_vec u)
 {
 	double	d;
 
-	d = sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y 2) + pow(p2.z - p1.z, 2));
+	d = sqrt(pow((u.x - v.x), 2) + pow((u.y - v.y), 2) + pow((u.z - v.z), 2));
 	return (d);
 }
 
