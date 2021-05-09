@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/03 17:39:20 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 22:44:40 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define MINIRT_H
 
 # include "mlx.h"
-# include "ggl_mlx_define.h"
+# include "x_eleven.h"
 # include "libft.h"
+# include "get_next_line.h"
 # include "vector.h"
 # include "object.h"
 # include "error.h"
@@ -25,6 +26,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <pthread.h>
+# include <stdbool.h>
 
 # ifndef MACOS
 #  define OS_TYPE 1
@@ -37,8 +39,6 @@
 # define REFLECTION_LIMIT 3
 
 # define EPSILON 0.00001
-
-# define BUFFSIZE 1024
 
 # ifndef NUM_THREADS
 #  define NUM_THREADS 4
@@ -74,15 +74,7 @@ typedef	struct		s_ray
 	t_vec			dir;
 }					t_ray;
 
-typedef	struct		s_mlx
-{
-	void			*mlx_ptr;
-	void			*win_ptr;
-	t_cam			*cam;
-	t_cam			*start;
-}					t_mlx;
-
-typedef	struct		s_object
+typedef struct		s_object
 {
 	int				flag;
 	t_figures		fig;
@@ -97,16 +89,16 @@ typedef	struct		s_object
 	struct s_object	*next;
 }					t_object;
 
-typedef	struct		s_tmp
+typedef struct		s_tmp
 {
-	double			x_res;
-	double			y_res;
+	int				x_res;
+	int				y_res;
 	int				i;
 	int				j;
 	int				limit;
 }					t_tmp;
 
-typedef	struct		s_cam
+typedef struct		s_cam
 {
 	int				init;
 	int				idx;
@@ -121,7 +113,7 @@ typedef	struct		s_cam
 	struct s_cam	*next;
 }					t_cam;
 
-typedef	struct		s_light
+typedef struct		s_light
 {
 	t_vec			o;
 	double			br;
@@ -131,8 +123,8 @@ typedef	struct		s_light
 
 typedef	struct		s_scene
 {
-	double			x_res;
-	double			y_res;
+	int				x_res;
+	int				y_res;
 	int				cam_nb;
 	t_light			*light;
 	int				res_idx;
@@ -149,6 +141,14 @@ typedef	struct		s_bmpheader
 	unsigned int	bfreserved;
 	unsigned int	bfoffbits;
 }					t_bmpheader;
+
+typedef	struct		s_mlx
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_cam			*cam;
+	t_cam			*start;
+}					t_mlx;
 
 typedef	struct		s_render
 {
@@ -190,9 +190,32 @@ typedef	struct		s_parse
 	char			**info;
 	int				fd;
 	t_mlx			*mlx;
-	t_scence		*trace;
-	t_object		*list;
+	t_scene			*trace;
+	t_object		**list;
 }					t_parse;
+
+typedef	struct		s_sq
+{
+	t_vec			half_size;
+	t_vec			floor;
+	t_vec			center_to_point;
+}					t_sq;
+
+typedef struct		s_cube
+{
+	t_object		sq;
+	t_vec			center;
+	t_vec			normal[6];
+}					t_cube;
+
+typedef	struct		s_pyramid
+{
+	t_object		sq;
+	t_object		tr;
+	t_vec			center;
+	t_vec			normal[5];
+	t_vec			corner[4];
+}					t_pyramid;
 
 /* bmp */
 
@@ -287,7 +310,7 @@ int					calc_ray(int n, t_tmp tmp, t_render *render);
 
 /* trace */
 
-void				make_pyramid(t_cube *f, t_object *list);
+void				make_pyramid(t_pyramid *f, t_object *list);
 double				cube_intersection_point(t_vec o, t_vec d, t_object *list);
 void				make_pyramid(t_pyramid *f, t_object *list);
 double				pyramid_intersection_point(t_vec o, t_vec d, t_object *list);
@@ -306,7 +329,7 @@ void				intersection_sphere(double dis[2], t_vec origin, t_vec dir, t_object *li
 double				sphere_intersection_point(t_vec origin, t_vec dir, t_object *list);
 double				square_intersection_point(t_vec origin, t_vec dir, t_object *list);
 bool				check_point_inside(t_vec p1, t_vec p2, t_vec p3, t_vec point);
-double				triangle_intersection(t_vec origin, t_ved dir, t_object *list);
+double				triangle_intersection(t_vec origin, t_vec dir, t_object *list);
 
 /* light */
 
@@ -349,6 +372,5 @@ int					ssaa_one(int *color, int c_col, t_tmp tmp, t_render *render);
 int					ssaa_two(int *color, int c_col, t_tmp tmp, t_render *render);
 int					ssaa_three(int *color, int c_col, t_tmp tmp, t_render *render);
 int					super_sample(int *color, t_tmp tmp, t_render *render);
-
 
 #endif

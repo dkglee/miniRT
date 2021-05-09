@@ -6,17 +6,17 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 21:51:33 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/06 16:33:52 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 22:27:00 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	parse_sphere(t_parse *parse)
+void	parse_sphere(t_parse *parse, t_object *list)
 {
 	t_object	*new;
 
-	new = ft_new_object(parse);
+	new = ft_new_object(list);
 	if (count_info(parse->info++) != 9)
 		error("Sphere Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info))
@@ -36,11 +36,11 @@ void	parse_sphere(t_parse *parse)
 	new->color = get_color(new->rgb_color);
 }
 
-void	parse_plane(t_parse *parse)
+void	parse_plane(t_parse *parse, t_object *list)
 {
 	t_object	*new;
 
-	new = ft_new_object(parse);
+	new = ft_new_object(list);
 	if (count_info(parse->info++) != 9)
 		error("Plane Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info))
@@ -60,11 +60,11 @@ void	parse_plane(t_parse *parse)
 	new->color = get_color(new->rgb_color);
 }
 
-void	parse_square(t_parse *parse)
+void	parse_square(t_parse *parse, t_object *list)
 {
 	t_object	*new;
 
-	new = ft_new_object(parse);
+	new = ft_new_object(list);
 	if (count_info(parse->info++) != 10)
 		error("Square Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info))
@@ -85,11 +85,11 @@ void	parse_square(t_parse *parse)
 	new->color = get_color(new->rgb_color);
 }
 
-void	parse_triangle(t_parse *parse)
+void	parse_triangle(t_parse *parse, t_object *list)
 {
 	t_object	*new;
 
-	new = ft_new_object(parse);
+	new = ft_new_object(list);
 	if (count_info(parse->info++) != 10)
 		error("Triangle Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info))
@@ -111,11 +111,11 @@ void	parse_triangle(t_parse *parse)
 	new->color = get_color(new->rgb_color);
 }
 
-void	parse_cylinder(t_parse *parse)
+void	parse_cylinder(t_parse *parse, t_object *list)
 {
 	t_object	*new;
 
-	new = ft_new_object(parse);
+	new = ft_new_object(list);
 	if (count_info(parse->info++) != 11)
 		error("Cylinder Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info))

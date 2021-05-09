@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 12:08:56 by deulee            #+#    #+#             */
-/*   Updated: 2021/01/07 17:59:29 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 21:47:55 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		get_next_line(int fd, char **line)
 {
-	static t_list		*saving = NULL;
-	t_list				*list;
+	static t_buff		*saving = NULL;
+	t_buff				*list;
 	int					flag;
 
 	if (BUFFER_SIZE < 1 || line == NULL)
@@ -38,7 +38,7 @@ int		get_next_line(int fd, char **line)
 	return (flag);
 }
 
-int		find_next_line(char **line, t_list *list)
+int		find_next_line(char **line, t_buff *list)
 {
 	int		readsize;
 	int		flag;
@@ -61,7 +61,7 @@ int		find_next_line(char **line, t_list *list)
 	return (0);
 }
 
-int		make_line(char **line, t_list *list)
+int		make_line(char **line, t_buff *list)
 {
 	unsigned int	len;
 
@@ -84,7 +84,7 @@ int		make_line(char **line, t_list *list)
 	return (0);
 }
 
-int		make_backup(char *backupline, t_list *list, unsigned int nsize)
+int		make_backup(char *backupline, t_buff *list, unsigned int nsize)
 {
 	char			*backup;
 	unsigned int	size;

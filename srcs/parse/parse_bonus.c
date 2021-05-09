@@ -6,17 +6,17 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:29:00 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/06 16:38:27 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 22:32:08 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	parse_cube(t_parse *parse)
+void	parse_cube(t_parse *parse, t_object *list)
 {
 	t_object	*new;
 
-	new = ft_new_object(parse);
+	new = ft_new_object(list);
 	if (count_info(parse->info++) != 9)
 		error("Cube Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info))
@@ -35,11 +35,11 @@ void	parse_cube(t_parse *parse)
 	new->color = get_color(new->rgb_color);
 }
 
-void	parse_pyramid(t_parse *parse)
+void	parse_pyramid(t_parse *parse, t_object *list)
 {
 	t_object	*new;
 
-	new = ft_new_object(parse);
+	new = ft_new_object(list);
 	if (count_info(parse->info++) != 9)
 		error("Pyramid Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info))

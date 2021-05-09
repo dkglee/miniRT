@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 15:37:52 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/16 14:59:36 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 23:05:29 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ void	parse(t_mlx *mlx, t_scene *trace, t_object *list, char **argv)
 	trace->amb_idx = 0;
 	parse.mlx = mlx;
 	parse.trace = trace;
-	parse.object = list;
+	parse.object = &list;
 	parse.line = NULL;
 	parse.info = NULL;
 	parse.fd = open(argv[1], O_RDONLY);
 	if (fd <= 2)
 		error("File Open Error", NULL, NULL);
-	start_parse(&parse);
+	start_parse(&parse, list);
 	if (trace->res_idx == 0 || trace->amb_idx == 0 || mlx->cam == NULL)
 		error("No Res Or Amb Or Cam", parse_error, &parse)
 }
 
-void	start_parse(t_parse *parse)
+void	start_parse(t_parse *parse, t_object *list)
 {
 	int		flag;
 
@@ -44,7 +44,7 @@ void	start_parse(t_parse *parse)
 		if (NULL = (parse.info = ft_split(parse.line, "\t\v\f\r ")))
 			error(NULL, parse_error, &parse);
 		if (parse.info[0] != NULL)
-			parse_everyting(&parse);
+			parse_info(&parse, t_object *list);
 		if (flag == 0)
 			break ;
 		free(parse.line);
@@ -57,7 +57,7 @@ void	start_parse(t_parse *parse)
 	clear_parse(&parse);
 }
 
-void	parse_info(t_parse *parse)
+void	parse_info(t_parse *parse, t_object *list)
 {
 	if (!ft_strcmp(parse->info[0], RESOLUTION))
 		parse_resolution(parse);
@@ -68,19 +68,19 @@ void	parse_info(t_parse *parse)
 	else if (!ft_strcmp(parse->info[0], LIGHT))
 		parse_light(parse);
 	else if (!ft_strcmp(parse->info[0], SPHERE))
-		parse_sphere(parse);
+		parse_sphere(parse, list);
 	else if (!ft_strcmp(parse->info[0], PLANE))
-		parse_plane(parse);
+		parse_plane(parse, list);
 	else if (!ft_strcmp(parse->info[0], SQUARE))
-		parse_square(parse);
+		parse_square(parse, list);
 	else if (!ft_strcmp(parse->info[0], CYLINDER))
-		parse_cylinder(parse);
+		parse_cylinder(parse, list);
 	else if (!ft_strcmp(parse->info[0], TRIANGLE))
-		parse_triangle(parse);
+		parse_triangle(parse, list);
 	else if (!ft_strcmp(parse->info[0], PYRAMID))
-		parse_pyramid(parse);
+		parse_pyramid(parse, list);
 	else if (!ft_strcmp(parse->info[0], CUBE))
-		parse_cube(parse);
+		parse_cube(parse, list);
 	else
 		error("Element Error", clear_parse, parse);
 }

@@ -6,15 +6,15 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:24:51 by deulee            #+#    #+#             */
-/*   Updated: 2021/01/07 19:44:56 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 21:47:21 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_list		*find_fd_or_make(int fd, t_list **header)
+t_buff		*find_fd_or_make(int fd, t_buff **header)
 {
-	t_list		*ltr;
+	t_buff		*ltr;
 
 	ltr = *header;
 	while (ltr != NULL)
@@ -25,7 +25,7 @@ t_list		*find_fd_or_make(int fd, t_list **header)
 	}
 	if (ltr != NULL)
 		return (ltr);
-	if (0 == (ltr = (t_list *)malloc(sizeof(t_list))))
+	if (0 == (ltr = (t_buff *)malloc(sizeof(t_buff))))
 		return (NULL);
 	ltr->fd = fd;
 	ltr->backup = NULL;
@@ -35,7 +35,7 @@ t_list		*find_fd_or_make(int fd, t_list **header)
 	return (ltr);
 }
 
-int			backup_update(t_list *list, unsigned int len)
+int			backup_update(t_buff *list, unsigned int len)
 {
 	char				*new_backup;
 	unsigned int		size;
@@ -60,10 +60,10 @@ int			backup_update(t_list *list, unsigned int len)
 	return (1);
 }
 
-void		clear_fd(t_list **header)
+void		clear_fd(t_buff **header)
 {
-	t_list		*ptr;
-	t_list		*temp;
+	t_buff		*ptr;
+	t_buff		*temp;
 
 	ptr = *header;
 	while (ptr != NULL)
@@ -76,10 +76,10 @@ void		clear_fd(t_list **header)
 	*header = NULL;
 }
 
-void		del_fd(int fd, t_list **header)
+void		del_fd(int fd, t_buff **header)
 {
-	t_list		*ptr;
-	t_list		*before;
+	t_buff		*ptr;
+	t_buff		*before;
 
 	ptr = *header;
 	before = *header;

@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:11:17 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/17 17:39:17 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 19:05:37 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ int		close_minirt(t_render *render)
 
 int		change_cam(int key, t_render *render)
 {
-	if (key == ESC_KEY)
+	if (key == K_ESC)
 	{
 		clear_render(render);
 		exit(0);
 	}
-	if (key == SP_KEY)
+	if (key == K_SP)
 	{
 		if (render->mlx->cam->next == NULL)
 		{

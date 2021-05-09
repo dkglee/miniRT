@@ -6,13 +6,13 @@
 #    By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/05 13:51:29 by deulee            #+#    #+#              #
-#    Updated: 2021/05/04 12:58:25 by deulee           ###   ########.fr        #
+#    Updated: 2021/05/09 21:28:45 by deulee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 
-PREFIX = includes
+HEADER = includes
 
 SRCDIR = srcs/
 
@@ -38,7 +38,7 @@ CC = gcc
 
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror -I $(HEAD) -D NUM_THREADS=$(NUM_THREADS)
+CFLAGS = -Wall -Wextra -Werror -I $(HEADER) -D NUM_THREADS=$(NUM_THREADS)
 
 FLAGS = -L $(LIB)libft -lft
 

@@ -6,35 +6,12 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 14:40:44 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/07 17:02:31 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 19:26:34 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_H
 # define OBJECT_H
-
-typedef	struct		s_sq
-{
-	t_vec			half_size;
-	t_vec			floor;
-	t_vec			center_to_point;
-}					t_sq;
-
-typedef struct		s_cube
-{
-	t_object		sq;
-	t_vec			center;
-	t_vec			normal[6];
-}					t_cube;
-
-typedef	struct		s_pyramid
-{
-	t_object		sq;
-	t_object		tr;
-	t_vec			center;
-	t_vec			normal[5];
-	t_vec			corner[4];
-}					t_pyramid;
 
 typedef	struct		s_sphere
 {

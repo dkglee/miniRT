@@ -6,15 +6,15 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:34:43 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 18:26:40 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 19:40:47 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool	validation_resolution(double horiz, double ver)
+bool	validation_resolution(int horiz, int ver)
 {
-	if (horiz < 0.0f || y < 0.0f)
+	if (horiz < 0 || ver < 0)
 		return (false);
 	return (true);
 }

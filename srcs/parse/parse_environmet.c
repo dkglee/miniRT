@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:21:50 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/03 17:07:59 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/09 19:40:13 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	parse_resolution(t_parse *parse)
 	parse->info++;
 	if (!validation_extraction(parse->info))
 		error("Resolution Information Error", parse_error, parse);
-	if (!parse_double(parse->info[0], &parse->trace->x_res) ||
-			!parse_double(parse->info[1], &parse->trace->y_res) ||
+	if (!parse_int(parse->info[0], &parse->trace->x_res) ||
+			!parse_int(parse->info[1], &parse->trace->y_res) ||
 			!validation_resolution(parse->trace->x_res, parse->trace->y_res))
 		error("Resolution Parse Error", parse_error, parse);
 }
