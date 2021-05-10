@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:29:00 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 22:32:08 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 17:15:06 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	parse_cube(t_parse *parse, t_object *list)
 			!parse_double(parse->info[4], &new->refrac) ||
 			!parse_int(parse->info[5], &new->texture) ||
 			!parse_double(parse->info[6], &new->wavelength) ||
-			!parse_vec(parse->info[7], &new->rgb_color) ||
+			!parse_vec_color(parse->info[7], &new->rgb_color) ||
 			!validation_bonus(new))
 		error("Cube Parse Error", parse_error, error);
 	new->color = get_color(new->rgb_color);
@@ -52,7 +52,7 @@ void	parse_pyramid(t_parse *parse, t_object *list)
 			!parse_double(parse->info[4], &new->refrac) ||
 			!parse_int(parse->info[5], &new->texture) ||
 			!parse_double(parse->info[6], &new->wavelength) ||
-			!parse_vec(parse->info[7], &new->rgb_color) ||
+			!parse_vec_color(parse->info[7], &new->rgb_color) ||
 			!validation_bonus(new))
 		error("Pyramid Parse Error", parse_error, error);
 	new->color = get_color(new->rgb_color);

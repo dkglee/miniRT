@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 21:51:33 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 22:27:00 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 17:10:14 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	parse_sphere(t_parse *parse, t_object *list)
 			!parse_double(parse->info[4], &new->refrac) ||
 			!parse_int(parse->info[5], &new->texture) ||
 			!parse_double(parse->info[6], &new->wavelength) ||
-			!parse_vec(parse->info[7], &new->rgb_color) ||
+			!parse_vec_color(parse->info[7], &new->rgb_color) ||
 			!validation_sphere(new))
 		error("Sphere Parse Error", parse_error, error);
 	new->fig.sp.radius /= 2;
@@ -53,7 +53,7 @@ void	parse_plane(t_parse *parse, t_object *list)
 			!parse_double(parse->info[4], &new->refrac) ||
 			!parse_int(parse->info[5], &new->texture) ||
 			!parse_double(parse->info[6], &new->wavelength) ||
-			!parse_vec(parse->info[7], &new->rgb_color) ||
+			!parse_vec_color(parse->info[7], &new->rgb_color) ||
 			!validation_plane(new))
 		error("Plane Parse Error", parse_error, error);
 	new->normal = ft_vec_unit(new->normal);
@@ -78,7 +78,7 @@ void	parse_square(t_parse *parse, t_object *list)
 			!parse_double(parse->info[5], &new->refrac) ||
 			!parse_int(parse->info[6], &new->texture) ||
 			!parse_double(parse->info[7], &new->wavelength) ||
-			!parse_vec(parse->info[8], &new->rgb_color) ||
+			!parse_vec_color(parse->info[8], &new->rgb_color) ||
 			!validation_square(new))
 		error("Plane Parse Error", parse_error, error);
 	new->normal = ft_vec_unit(new->normal);
@@ -103,7 +103,7 @@ void	parse_triangle(t_parse *parse, t_object *list)
 			!parse_double(parse->info[5], &new->refrac) ||
 			!parse_int(parse->info[6], &new->texture) ||
 			!parse_double(parse->info[7], &new->wavelength) ||
-			!parse_vec(parse->info[8], &new->rgb_color) ||
+			!parse_vec_color(parse->info[8], &new->rgb_color) ||
 			!validation_triangle(new))
 		error("Triangle Parse Error", parse_error, error);
 	new->normal = ft_vec_cross(ft_vec_sub(new->fig.tr.p3, new->fig.tr.p1),
@@ -130,7 +130,7 @@ void	parse_cylinder(t_parse *parse, t_object *list)
 			!parse_double(parse->info[6], &new->refrac) ||
 			!parse_int(parse->info[7], &new->texture) ||
 			!parse_double(parse->info[8], &new->wavelength) ||
-			!parse_vec(parse->info[9], &new->rgb_color) ||
+			!parse_vec_color(parse->info[9], &new->rgb_color) ||
 			!validation_cylinder(new))
 		error("Cylinder Parse Error", parse_error, error);
 	new->fig.cy.radius /= 2;

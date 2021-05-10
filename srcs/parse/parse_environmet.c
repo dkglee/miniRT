@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:21:50 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 19:40:13 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 17:11:58 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	parse_resolution(t_parse *parse)
 
 void	parse_amb_light(t_parse *parse)
 {
-	t_vec	color;
+	t_color	color;
 
 	if (parse->trace->amb_idx > 0)
 		error("Ambient Light can be declared once time", parse_error, parse);
@@ -42,7 +42,7 @@ void	parse_amb_light(t_parse *parse)
 	if (!validation_extraction(parse->info))
 		error("Ambient Light Information Error", parse_error, parse);
 	if (!parse_double(parse->info[0], &parse->trace->amb_light) ||
-			!parse_vec(parse->info[1], &color) ||
+			!parse_vec_color(parse->info[1], &color) ||
 			!validation_amb_light(parse->trace->amb_light, &color))
 		error("Ambient Light Parse Error", parse_error, parse);
 	parse->trace->amb_color = get_color(color);
@@ -78,7 +78,7 @@ void	parse_light(t_parse *parse)
 {
 	t_light	*new;
 	t_light *begin;
-	t_vec	color;
+	t_color	color;
 
 	begin = parse->trace->light;
 	new = (t_light *)malloc(sizeof(t_light));
@@ -92,7 +92,7 @@ void	parse_light(t_parse *parse)
 		error("Light Information Error", parse_error, parse);
 	if (!parse_vec(parse->info[0], &new->o) ||
 			!parse_double(parse->info[1], &new->br) ||
-			!parse_color(parse->info[2], &color) ||
+			!parse_vec_color(parse->info[2], &color) ||
 			!validation_light(new_br, &color))
 		error("Light Parse Error", parse_error, parse);
 	new->color = get_color(color);

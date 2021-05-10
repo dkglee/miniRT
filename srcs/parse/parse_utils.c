@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:41:38 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/06 00:05:05 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 17:17:28 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	parse_double(char *info, double *value)
 	char	**split;
 
 	flag = true;
-	split = ft_split(info, ",");
+	split = ft_split(info, ',');
 	if (count_info(split) != 1)
 	{
 		flag = false;
@@ -48,7 +48,7 @@ bool	parse_vec(char *info, t_vec *v)
 	char	**split;
 
 	flag = true;
-	split = ft_split(info, ",");
+	split = ft_split(info, ',');
 	if (count_info(split) != 3)
 		flag = false;
 	else
@@ -68,7 +68,7 @@ bool	parse_int(char *info, int *value)
 	char	**split;
 
 	flag = true;
-	split = ft_split(info, ",");
+	split = ft_split(info, ',');
 	if (count_info(split) != 1)
 	{
 		flag = false;
@@ -80,7 +80,7 @@ bool	parse_int(char *info, int *value)
 	return (flag);
 }
 
-int		get_color(t_vec color)
+int		get_color(t_color color)
 {
 	int		r;
 	int		g;

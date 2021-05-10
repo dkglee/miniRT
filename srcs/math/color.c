@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:48:28 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 23:28:38 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 17:15:40 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		color_difference(int x, int y)
 	return (distance_power2);
 }
 
-int		color_light(int color, t_vec rgb)
+int		color_light(int color, t_color rgb)
 {
 	unsigned int	mask;
 	unsigned int	r;

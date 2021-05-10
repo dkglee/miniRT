@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 23:47:50 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 17:17:53 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@
 # define OBJ_MODE 9
 # define LIT_MODE 10
 
+typedef struct		s_color
+{
+	int				x;
+	int				y;
+	int				z;
+}					t_color;
+
 typedef	struct		s_ray
 {
 	t_vec			origin;
@@ -80,7 +87,7 @@ typedef struct		s_object
 	int				flag;
 	t_figures		fig;
 	int				color;
-	t_vec			rgb_color;
+	t_color			rgb_color;
 	int				specular;
 	double			reflec;
 	double			refrac;
@@ -259,6 +266,7 @@ void				init_mlx(t_mlx *mlx, t_scene *trace);
 
 /* parse */
 
+bool				parse_color(char *info, t_color *color);
 void				parse_cube(t_parse *parse, t_object *list);
 void				parse_pyramid(t_parse *parse, t_object *list);
 void				parse(t_mlx *mlx, t_scene *trace, t_object *list, char **argv);

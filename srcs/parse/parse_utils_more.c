@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:08:14 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 23:05:17 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 17:17:44 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,31 +74,22 @@ void	clear_info(char **info)
 	free(info);
 }
 
-t_object	*ft_new_object(t_object *list)
+bool	parse_vec_color(char *info, t_color *color)
 {
-	t_object	*new;
+	bool	flag;
+	char	**split;
 
-	new = (t_object *)malloc(sizeof(t_object));
-	if (new == NULL)
-		error("Object Malloc Error", NULL, NULL);
-	ft_objadd_back(&list, new);
-	return (new);
-}
-
-void	ft_objadd_back(t_object **head, t_object *new)
-{
-	t_object	*fin;
-
-	if (!(head) || !(new))
-		return ;
-	if (*head == NULL)
+	flag = true;
+	split = ft_split(info, ',');
+	if (count_info(split) != 3)
+		flag = false;
+	else
 	{
-		*head = new;
-		return ;
+		color->x = ft_atoi(split[0]);
+		color->y = ft_atoi(split[1]);
+		color->z = ft_atoi(split[2]);
 	}
-	fin = *head;
-	while (fin->next != NULL)
-		fin = fin->next;
-	new->next = fin->next;
-	fin->next = new;
+	clear_info(split);
+	split = NULL;
+	return (flag);
 }
