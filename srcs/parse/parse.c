@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 15:37:52 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 23:49:16 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 16:38:54 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	start_parse(t_parse *parse, t_object *list)
 
 	while ((flag = get_next_line(parse->fd, &(parse->line))) != -1)
 	{
-		if (NULL == (parse->info = ft_split(parse->line, "\t\v\f\r ")))
+		if (NULL == (parse->info = ft_split_str(parse->line, "\t\v\f\r ")))
 			error(NULL, parse_error, parse);
 		if (parse->info[0] != NULL)
 			parse_info(parse, list);

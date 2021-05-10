@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 15:40:27 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 19:47:44 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 16:36:47 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ size_t			ft_strlen(const char *str);
 size_t			ft_strlcpy(char *dest, const char *src, size_t dstsize);
 size_t			ft_strlcat(char *dest, const char *src, size_t dstsize);
 int				ft_strcmp(char *s1, char *s2);
+char			**ft_split_str(char *str, char *cut);
 
 char			*ft_strchr(const char *s, int c);
 char			*ft_strrchr(const char *s, int c);
