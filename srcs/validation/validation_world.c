@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:34:43 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 19:40:47 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 18:28:18 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ bool	validation_resolution(int horiz, int ver)
 	return (true);
 }
 
-bool	validation_amb_light(double ratio, t_vec *color)
+bool	validation_amb_light(double ratio, t_color *color)
 {
-	if (color->x < 0.0f || color->x > 255.0f ||
-			color->y < 0.0f || color->y > 255.0f ||
-			color->z < 0.0f || color->z > 255.0f ||
+	if (color->x < 0 || color->x > 255 ||
+			color->y < 0 || color->y > 255 ||
+			color->z < 0 || color->z > 255 ||
 			ratio > 1.0f || ratio < 0.0f)
 		return (false);
 	return (true);
@@ -39,11 +39,11 @@ bool	validation_cam(t_vec *normal, double fov)
 	return (true);
 }
 
-bool	validation_light(double ratio, t_vec *color)
+bool	validation_light(double ratio, t_color *color)
 {
-	if (color->x < 0.0f || color->x > 255.0f ||
-			color->y < 0.0f || color->y > 255.0f ||
-			color->z < 0.0f || color->z > 255.0f ||
+	if (color->x < 0 || color->x > 255 ||
+			color->y < 0 || color->y > 255 ||
+			color->z < 0 || color->z > 255 ||
 			ratio > 1.0f || ratio < 0.0f)
 		return (false);
 	return (true);

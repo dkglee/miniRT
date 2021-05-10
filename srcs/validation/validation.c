@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:12:54 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/06 16:40:10 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 18:29:02 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	validation_range(double num, double min, double max)
 	return (true);
 }
 
-bool	validation_sqaure(t_object *o)
+bool	validation_square(t_object *o)
 {
 	bool	flag;
 

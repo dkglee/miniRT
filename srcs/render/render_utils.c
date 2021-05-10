@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:11:17 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 19:05:37 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 18:36:59 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,19 @@ int		change_cam(int key, t_render *render)
 	}
 	if (key == K_SP)
 	{
-		if (render->mlx->cam->next == NULL)
+		if (render->mlx.cam->next == NULL)
 		{
-			render->mlx->cam = render->mlx->start;
+			render->mlx.cam = render->mlx.start;
 			mlx_put_image_to_window(
-					render->mlx->mlx_ptr, render->mlx->win_ptr,
-					render->mlx->cam->img, 0, 0);
+					render->mlx.mlx_ptr, render->mlx.win_ptr,
+					render->mlx.cam->img, 0, 0);
 		}
 		else
 		{
-			render->mlx->cam = render->mlx->cam->next;
+			render->mlx.cam = render->mlx.cam->next;
 			mlx_put_image_to_window(
-					render->mlx->mlx_ptr, render->mlx->win_ptr, 
-					render->mlx->cam->img, 0, 0);
+					render->mlx.mlx_ptr, render->mlx.win_ptr, 
+					render->mlx.cam->img, 0, 0);
 		}
 		return (1);
 	}
@@ -91,7 +91,7 @@ int		change_cam(int key, t_render *render)
 
 void	graphic_loop_mlx(t_render *render)
 {
-	mlx.win_ptr = mlx_new_window(render->mlx.mlx_ptr, render->trace.x_res, 
+	render->mlx.win_ptr = mlx_new_window(render->mlx.mlx_ptr, render->trace.x_res, 
 			render->trace.y_res, "miniRT");
 	mlx_put_image_to_window(render->mlx.mlx_ptr, render->mlx.win_ptr,
 			render->mlx.cam->img, 0, 0);

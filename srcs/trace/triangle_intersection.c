@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 17:16:54 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/07 21:37:45 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 19:09:30 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	check_point_inside(t_vec p1, t_vec p2, t_vec p3, t_vec point)
 	return (true);
 }
 
-double	triangle_intersection(t_vec origin, t_ved dir, t_object *list)
+double	triangle_intersection_point(t_vec origin, t_ved dir, t_object *list)
 {
 	double	dis;
 	t_vec	point;

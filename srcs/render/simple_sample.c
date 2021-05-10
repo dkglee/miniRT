@@ -6,13 +6,13 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:25:16 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/16 14:57:35 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 18:39:48 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		sample_first(int *edge, int last[2], t_tmp tmp, t_render *render)
+int		*sample_first(int *edge, int last[2], t_tmp tmp, t_render *render)
 {
 	int		*color;
 
@@ -42,7 +42,7 @@ int		sample_first(int *edge, int last[2], t_tmp tmp, t_render *render)
 	return (color);
 }
 
-int		sample_center(int *edge, int last[2], t_tmp tmp, t_render *render)
+int		*sample_center(int *edge, int last[2], t_tmp tmp, t_render *render)
 {
 	int		*color;
 
@@ -58,7 +58,7 @@ int		sample_center(int *edge, int last[2], t_tmp tmp, t_render *render)
 		color[3] = calc_ray(8, tmp, render);
 		last[0] = color[1];
 		last[1] = color[3];
-		edge[tmp.i] == color[2];
+		edge[tmp.i] = color[2];
 	}
 	else
 	{
@@ -72,7 +72,7 @@ int		sample_center(int *edge, int last[2], t_tmp tmp, t_render *render)
 	return (color);
 }
 
-int		sample_last(int *edge, int last[2], t_tmp tmp, t_render *render)
+int		*sample_last(int *edge, int last[2], t_tmp tmp, t_render *render)
 {
 	int		*color;
 
@@ -105,9 +105,9 @@ int		*simple_sample(int *edge, int last[2], t_tmp tmp, t_render *render)
 {
 	int		*color;
 
-	if (tmp.i = 0)
-		color = sample_first(edge, last, tmp, rener);
-	else if (tmp.i == w->trace.x_res - 1)
+	if (tmp.i == 0)
+		color = sample_first(edge, last, tmp, render);
+	else if (tmp.i == render->trace.x_res - 1)
 		color = sample_last(edge, last, tmp, render);
 	else
 		color = sample_center(edge, last, tmp, render);

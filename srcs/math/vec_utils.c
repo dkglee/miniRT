@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 17:07:53 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/21 17:08:08 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 18:55:29 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_vec	ft_vec_cross(t_vec u, t_vec v)
 	return (result);
 }
 
-t_vec	ft_vec_product(t_vec u, double scalar)
+t_vec	ft_vec_product(double scalar, t_vec u)
 {
 	u.x *= scalar;
 	u.y *= scalar;

@@ -6,16 +6,18 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 19:30:18 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/17 17:54:00 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 18:34:09 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	render_word(t_render *render)
+#include "minirt.h"
+
+void	render_world(t_render *render)
 {
 	int		size;
 	int		color;
 
-	size = w->trace.y_res / NUM_THREADS;
+	size = render->trace.y_res / NUM_THREADS;
 	render->j = size * render->idx;
 	while (render->j < size * (render->idx + 1))
 	{
@@ -48,7 +50,7 @@ int		find_pixel_color(t_render *render)
 	if ((color_difference(color[0], color[3]) > 1000) ||
 			(color_difference(color[1], color[2]) > 1000))
 		return (super_sample(color, tmp, render));
-	return (cal_avg_ssaa_color(color));
+	return (calc_avg_ssaa_color(color));
 }
 
 void	render_error(void *ptr)

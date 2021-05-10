@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_environmet.c                                 :+:      :+:    :+:   */
+/*   parse_environment.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: deulee <deulee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/05 16:21:50 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 17:11:58 by deulee           ###   ########.fr       */
+/*   Created: 2021/05/10 17:52:13 by deulee            #+#    #+#             */
+/*   Updated: 2021/05/10 18:27:30 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ void	parse_resolution(t_parse *parse)
 void	parse_amb_light(t_parse *parse)
 {
 	t_color	color;
+	bool	flag;
 
+	flag = true;
 	if (parse->trace->amb_idx > 0)
 		error("Ambient Light can be declared once time", parse_error, parse);
 	else
@@ -41,9 +43,10 @@ void	parse_amb_light(t_parse *parse)
 		error("Ambient Light Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info))
 		error("Ambient Light Information Error", parse_error, parse);
-	if (!parse_double(parse->info[0], &parse->trace->amb_light) ||
-			!parse_vec_color(parse->info[1], &color) ||
-			!validation_amb_light(parse->trace->amb_light, &color))
+	flag = parse_double(parse->info[0], &parse->trace->amb_light);
+	flag = parse_vec_color(parse->info[1], &color);
+	flag = validation_amb_light(parse->trace->amb_light, &color);
+	if (flag == false)
 		error("Ambient Light Parse Error", parse_error, parse);
 	parse->trace->amb_color = get_color(color);
 }
@@ -63,12 +66,12 @@ void	parse_cam(t_parse *parse)
 	parse->trace->cam_nb = new->idx;
 	if (count_info(parse->info++) != 4)
 		error("Cam Information Number Error", parse_error, parse);
-	if (!validatoin_extraction(parse->info))
+	if (!validation_extraction(parse->info))
 		error("Cam Information Error", parse_error, parse);
 	if (!parse_vec(parse->info[0], &new->o) ||
 			!parse_vec(parse->info[1], &new->nv) ||
 			!parse_double(parse->info[2], &new->fov) ||
-			!validation(&new->nv, new->fov))
+			!validation_cam(&new->nv, new->fov))
 		error("Cam Parse Error", parse_error, parse);
 	new->nv = ft_vec_unit(new->nv);
 	parse->mlx->cam = begin ? begin : new;
@@ -79,7 +82,9 @@ void	parse_light(t_parse *parse)
 	t_light	*new;
 	t_light *begin;
 	t_color	color;
+	bool	flag;
 
+	flag = true;
 	begin = parse->trace->light;
 	new = (t_light *)malloc(sizeof(t_light));
 	if (new == NULL)
@@ -90,10 +95,11 @@ void	parse_light(t_parse *parse)
 		error("Light Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info))
 		error("Light Information Error", parse_error, parse);
-	if (!parse_vec(parse->info[0], &new->o) ||
-			!parse_double(parse->info[1], &new->br) ||
-			!parse_vec_color(parse->info[2], &color) ||
-			!validation_light(new_br, &color))
+	flag = parse_vec(parse->info[0], &new->o);
+	flag = parse_double(parse->info[1], &new->br);
+	flag = parse_vec_color(parse->info[2], &color);
+	flag = validation_light(new->br, &color);
+	if (flag == false)
 		error("Light Parse Error", parse_error, parse);
 	new->color = get_color(color);
 	parse->trace->light = begin ? begin : new;

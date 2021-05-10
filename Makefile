@@ -6,7 +6,7 @@
 #    By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/05 13:51:29 by deulee            #+#    #+#              #
-#    Updated: 2021/05/09 21:28:45 by deulee           ###   ########.fr        #
+#    Updated: 2021/05/10 17:40:04 by deulee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,8 @@ FILES = minirt.c \
 		$(TRADIR)triangle_intersection.c \
 		$(VALDIR)validation.c \
 		$(VALDIR)validation_object.c \
-		$(VALDIR)validation_world.c
+		$(VALDIR)validation_world.c \
+		$(VALDIR)validation_bonus.c
 
 SRCS = $(addprefix $(SRCDIR), $(FILES))
 

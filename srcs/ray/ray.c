@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:58:09 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/07 14:23:57 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 18:29:51 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ int		calc_ray(int n, t_tmp tmp, t_render *render)
 
 	dir = set_camera(n, tmp, render->mlx);
 	dir = ft_look_at(dir, render->mlx.cam->nv);
-	color = ray_trace(w->mlx.cam->o, dir, render, REFLECTION_LIMIT);
+	color = ray_trace(render->mlx.cam->o, dir, render, REFLECTION_LIMIT);
 	return (color);
 }

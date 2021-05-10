@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 17:17:53 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 19:01:09 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ typedef struct		s_cam
 	int				idx;
 	t_vec			o;
 	t_vec			nv;
-	int				fov;
+	double			fov;
 	void			*img;
 	int				*addr;
 	int				bits_per_pixel;
@@ -242,7 +242,7 @@ void				error(char *str, void (*func)(void *), void *arg);
 int					color_product(int color, double coef);
 int					color_add(int x, int y);
 int					color_difference(int x, int y);
-int					color_light(int color, t_vec rgb);
+int					color_light(int color, t_color rgb);
 
 double				ft_vec_dis(t_vec v, t_vec u);
 t_vec				rotation_x(t_vec v, double degree);
@@ -257,7 +257,7 @@ double				ft_vec_sin(t_vec v, t_vec u);
 t_vec				ft_vec_add(t_vec u, t_vec v);
 t_vec				ft_vec_sub(t_vec u, t_vec v);
 t_vec				ft_vec_cross(t_vec u, t_vec v);
-t_vec				ft_vec_product(t_vec u, double scalar);
+t_vec				ft_vec_product(double scalar, t_vec u);
 double				ft_vec_dot(t_vec u, t_vec v);
 
 /* minirt */
@@ -266,7 +266,7 @@ void				init_mlx(t_mlx *mlx, t_scene *trace);
 
 /* parse */
 
-bool				parse_color(char *info, t_color *color);
+bool				parse_vec_color(char *info, t_color *color);
 void				parse_cube(t_parse *parse, t_object *list);
 void				parse_pyramid(t_parse *parse, t_object *list);
 void				parse(t_mlx *mlx, t_scene *trace, t_object *list, char **argv);
@@ -285,10 +285,11 @@ int					count_info(char **info);
 bool				parse_double(char *info, double *value);
 bool				parse_vec(char *info, t_vec *v);
 bool				parse_int(char *info, int *value);
-int					get_color(t_vec color);
+int					get_color(t_color color);
 void				ft_addcam_back(t_cam **head, t_cam *new);
 void				ft_addlight_back(t_light **head, t_light *new);
 void				clear_parse(void *ptr);
+void				clear_parsing(t_parse *parse);
 void				parse_error(void *ptr);
 void				clear_info(char **info);
 t_object			*ft_new_object(t_object *list);
@@ -303,13 +304,14 @@ bool				validation_range(double num, double min, double max);
 bool				validation_sqaure(t_object *o);
 bool				validation_sphere(t_object *o);
 bool				validation_plane(t_object *o);
-bool				validation_sqaure(t_object *o);
+bool				validation_square(t_object *o);
 bool				validation_triangle(t_object *o);
 bool				validation_cylinder(t_object *o);
 bool				validation_resolution(double horiz, double ver);
-bool				validation_amb_light(double ratio, t_vec *color);
+bool				validation_amb_light(double ratio, t_color *color);
 bool				validation_cam(t_vec *normal, double fov);
-bool				validation_light(double ratio, t_vec *color);
+bool				validation_light(double ratio, t_color *color);
+bool				validation_bonus(t_object *o);
 
 /* ray */
 
@@ -338,7 +340,8 @@ void				intersection_sphere(double dis[2], t_vec origin, t_vec dir, t_object *li
 double				sphere_intersection_point(t_vec origin, t_vec dir, t_object *list);
 double				square_intersection_point(t_vec origin, t_vec dir, t_object *list);
 bool				check_point_inside(t_vec p1, t_vec p2, t_vec p3, t_vec point);
-double				triangle_intersection(t_vec origin, t_vec dir, t_object *list);
+double				triangle_intersection_point(t_vec origin, t_vec dir, t_object *list);
+
 
 /* light */
 
@@ -363,7 +366,7 @@ void				get_texture(int	texture, t_inter *inter, t_object *list);
 void				*start_render(void *ptr);
 void				multithread_render(t_render render[NUM_THREADS]);
 void				init_render(t_mlx mlx, t_scene trace, t_object *list, t_render *render);
-void				render_word(t_render *render);
+void				render_world(t_render *render);
 int					find_pixel_color(t_render *render);
 void				render_error(void *ptr);
 void				clear_render(t_render *render);
@@ -372,9 +375,9 @@ int					calc_avg_ssaa_color(int *color);
 int					close_minirt(t_render *render);
 int					change_cam(int key, t_render *render);
 void				graphic_loop_mlx(t_render *render);
-int					sample_first(int *edge, int last[2], t_tmp tmp, t_render *render);
-int					sample_center(int *edge, int last[2], t_tmp tmp, t_render *render);
-int					sample_last(int *edge, int last[2], t_tmp tmp, t_render *render);
+int					*sample_first(int *edge, int last[2], t_tmp tmp, t_render *render);
+int					*sample_center(int *edge, int last[2], t_tmp tmp, t_render *render);
+int					*sample_last(int *edge, int last[2], t_tmp tmp, t_render *render);
 int					*simple_sample(int *edge, int last[2], t_tmp tmp, t_render *render);
 int					ssaa_zero(int *color, int c_col, t_tmp tmp, t_render *render);
 int					ssaa_one(int *color, int c_col, t_tmp tmp, t_render *render);

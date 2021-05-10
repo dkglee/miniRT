@@ -6,13 +6,13 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 21:30:01 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/08 21:56:16 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 18:59:50 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void		make_pyramid(t_cube *f, t_object *list)
+void		make_cube(t_cube *f, t_object *list)
 {
 	f->normal[0] = ft_vec_set(1, 0, 0);
 	f->normal[1] = ft_vec_set(-1, 0, 0);
@@ -72,12 +72,12 @@ void		make_pyramid(t_pyramid *f, t_object *list)
 	while (i < 4)
 	{
 		f->corner[i] = ft_vec_add(list->fig.sq.center,
-				ft_vec_product(list->fig.sq.side / 2, p->normal[i]));
+				ft_vec_product(list->fig.sq.side / 2, f->normal[i]));
 		f->corner[i] = ft_vec_add(list->fig.sq.center,
-				ft_vec_product(list->fig.sq.side / 2, p->normal[i + 1]));
+				ft_vec_product(list->fig.sq.side / 2, f->normal[i + 1]));
 		i++;
 	}
-	f->tr.fig.tr.p3 = p->center;
+	f->tr.fig.tr.p3 = f->center;
 }
 
 double		pyramid_intersection_point(t_vec o, t_vec d, t_object *list)
@@ -94,11 +94,11 @@ double		pyramid_intersection_point(t_vec o, t_vec d, t_object *list)
 	while (i < 4)
 	{
 		f.tr.fig.tr.p1 = f.corner[i];
-		f.tr.fig.tr.p2 = i < 3 ? p.corner[i + 1] : p.corner[0];
+		f.tr.fig.tr.p2 = i < 3 ? f.corner[i + 1] : f.corner[0];
 		f.tr.normal = ft_vec_cross(ft_vec_sub(f.tr.fig.tr.p3,
 					f.tr.fig.tr.p1), ft_vec_sub(f.tr.fig.tr.p2,
 						f.tr.fig.tr.p1));
-		dis = triangle_intersectoin_point(o, d, &(f.tr));
+		dis = triangle_intersection_point(o, d, &(f.tr));
 		if (dis > EPSILON && dis < c_inter)
 		{
 			c_inter = dis;
@@ -106,6 +106,6 @@ double		pyramid_intersection_point(t_vec o, t_vec d, t_object *list)
 		}
 		i++;
 	}
-	list->normal = cl_normal;
+	list->normal = c_norm;
 	return (c_inter);
 }

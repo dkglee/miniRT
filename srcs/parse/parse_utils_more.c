@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:08:14 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 17:17:44 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 17:27:56 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,25 @@ void	clear_parsing(t_parse *parse)
 	void		*temp;
 	t_object	*lst_temp;
 
-	lst_tmp = *(parse->list);
-	while (parse->mlx.cam)
+	lst_temp = *(parse->list);
+	while (parse->mlx->cam)
 	{
-		temp = (void *)parse->mlx.cam->next;
-		free(parse->mlx.cam);
-		parse->mlx.cam = (t_cam *)temp;
+		temp = (void *)parse->mlx->cam->next;
+		free(parse->mlx->cam);
+		parse->mlx->cam = (t_cam *)temp;
 	}
-	parse->mlx.cam = NULL;
-	while (parse->trace.light)
+	parse->mlx->cam = NULL;
+	while (parse->trace->light)
 	{
-		temp = (void *)parse->trace.light->next;
-		free(parse->trace.light);
-		parse->trace.light = (t_light *)temp;
+		temp = (void *)parse->trace->light->next;
+		free(parse->trace->light);
+		parse->trace->light = (t_light *)temp;
 	}
-	while (lst_tmp)
+	while (lst_temp)
 	{
-		temp = (void *)lst_tmp->next;
-		free(lst_tmp);
-		lst_tmp = (t_object *)lst_tmp;
+		temp = (void *)lst_temp->next;
+		free(lst_temp);
+		lst_temp = (t_object *)lst_temp;
 	}
 	*(parse->list) = NULL;
 }

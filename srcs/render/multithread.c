@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:56:47 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/06 19:30:01 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 18:31:34 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	multithread_render(t_render render[NUM_THREADS])
 	idx = 0;
 	while (idx < NUM_THREADS)
 	{
-		pthread_join(threads[i++], NULL);
+		pthread_join(threads[idx++], NULL);
 		idx++;
 	}
 }
@@ -51,10 +51,10 @@ void	init_render(t_mlx mlx, t_scene trace, t_object *list, t_render *render)
 	idx = 0;
 	while (idx < NUM_THREADS)
 	{
-		render[i].mlx = mlx;
-		render[i].trace = trace;
-		render[i].list = list;
-		render[i].idx = idx;
+		render[idx].mlx = mlx;
+		render[idx].trace = trace;
+		render[idx].list = list;
+		render[idx].idx = idx;
 		idx++;
 	}
 }
