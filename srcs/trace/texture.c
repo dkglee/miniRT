@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 20:48:04 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/09 21:28:01 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 20:54:37 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ int			checkboard(t_inter *inter)
 	location.y = (int)location.y % 2;
 	location.z = (int)location.z % 2;
 	return ((((int)location.x ^ (int)location.y) ^ (int)location.z)
-			? black : white)
+			? black : white);
 
 }
 
-int			wave(t_inter *inter, t_object *list)
+t_vec		wave(t_inter *inter, t_object *list)
 {
 	double	sine;
 
 	sine = sin(inter->p.z * list->wavelength) + sin(inter->p.y *
 			list->wavelength);
-	return (rotation_y(inter->normal, sine));
+	return (rotation_y(inter->norm, sine));
 }
 
 void		apply_color(double r, double g, double b, double color[3])
@@ -81,7 +81,7 @@ void		get_texture(int	texture, t_inter *inter, t_object *list)
 	if (texture == 1)
 		inter->color = checkboard(inter);
 	else if (texture == 2)
-		inter->normal = wave(inter, list);
+		inter->norm = wave(inter, list);
 	else if (texture== 3)
-		inter->color = rainbow(inter->normal.y);
+		inter->color = rainbow(inter->norm.y);
 }

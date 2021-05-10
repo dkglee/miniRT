@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 16:36:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/07 16:49:16 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 20:44:23 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ double		intersection_plane(t_vec origin, t_vec dir, t_vec point, t_vec nv)
 	double	dis;
 	double	denom;
 
-	denom = ft_vec_dot(nv, d);
+	denom = ft_vec_dot(nv, dir);
 	if (denom == 0)
 		return (INFINITY);
-	x = ft_vec_dot(nv, ft_vec_sub(point, origin)) / denom;
-	return (x > 0 ? x : INFINITY);
+	dis = ft_vec_dot(nv, ft_vec_sub(point, origin)) / denom;
+	return (dis > 0 ? dis : INFINITY);
 }
 
 double		plane_intersection_point(t_vec origin, t_vec dir, t_object *list)

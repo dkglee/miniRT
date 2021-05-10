@@ -6,20 +6,20 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 21:00:20 by deulee            #+#    #+#             */
-/*   Updated: 2021/04/10 22:34:55 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 20:43:38 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	add_light(double (*rgb)[3], double ratio, int color)
+void	add_light(t_color *rgb, double ratio, int color)
 {
 	unsigned int	mask;
 
 	mask = 255;
-	(*rgb)[0] += ratio * ((color & (mask << 16)) >> 16) / 255;
-	(*rgb)[1] += ratio * ((color & (mask << 8)) >> 8) / 255;
-	(*rgb)[2] += ratio * (color & mask) / 255;
+	rgb->x += ratio * ((color & (mask << 16)) >> 16) / 255;
+	rgb->y += ratio * ((color & (mask << 8)) >> 8) / 255;
+	rgb->z += ratio * (color & mask) / 255;
 }
 
 t_vec	reflection(t_vec ray, t_vec normal)
@@ -41,7 +41,7 @@ t_vec	refraction(t_vec dir, t_vec normal, t_object *list)
 
 	etai = 1;
 	etat = list->refrac;
-	cosi = dot(dir, normal);
+	cosi = ft_vec_dot(dir, normal);
 	if (list->fig.sp.inside == 1)
 	{
 		k = etai;
@@ -57,17 +57,17 @@ t_vec	refraction(t_vec dir, t_vec normal, t_object *list)
 	
 }
 
-double	apply_specular(t_vec ray, t_inter *inter, t_scene trace, t_object *list)
+double	apply_specular(t_ray ray, t_inter *inter, t_scene trace, t_object *list)
 {
 	double	light;
 	t_vec	vec_to_obj;
 	t_vec	vec_to_cam;
-	t_vec	reflection;
+	t_vec	reflec;
 
 	vec_to_obj = ft_vec_sub(trace.light->o, inter->p);
 	vec_to_cam = ft_vec_sub(ray.origin, inter->p);
-	reflec = reflecion(vec_to_obj, inter->normal);
-	if (dot(reflec, vec_to_cam) <= 0)
+	reflec = reflection(vec_to_obj, inter->norm);
+	if (ft_vec_dot(reflec, vec_to_cam) <= 0)
 		light = 0;
 	else
 	{

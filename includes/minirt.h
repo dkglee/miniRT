@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 19:01:09 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/10 20:54:54 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,18 +345,18 @@ double				triangle_intersection_point(t_vec origin, t_vec dir, t_object *list);
 
 /* light */
 
-void				apply_shading(t_vec ray, t_inter *inter, t_scene trace, t_object *list);
+void				apply_shading(t_ray ray, t_inter *inter, t_scene trace, t_object *list);
 void				get_norm(t_vec p, t_vec d, t_vec *normal, t_object *list);
-void				add_light(double (*rgb)[3], double ratio, int color);
+void				add_light(t_color *rgb, double ratio, int color);
 t_vec				reflection(t_vec ray, t_vec normal);
 t_vec				refraction(t_vec dir, t_vec normal, t_object *list);
-double				apply_specular(t_vec ray, t_inter *inter, t_scene trace, t_object *list);
+double				apply_specular(t_ray ray, t_inter *inter, t_scene trace, t_object *list);
 bool				valid_bright(t_vec o, t_vec d, t_object *list);
 
 /* texture */
 
 int					checkboard(t_inter *inter);
-int					wave(t_inter *inter, t_object *list);
+t_vec				wave(t_inter *inter, t_object *list);
 void				apply_color(double r, double g, double b, double color[3]);
 int					rainbow(double y);
 void				get_texture(int	texture, t_inter *inter, t_object *list);
