@@ -6,7 +6,7 @@
 #    By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/05 13:51:29 by deulee            #+#    #+#              #
-#    Updated: 2021/05/10 17:40:04 by deulee           ###   ########.fr        #
+#    Updated: 2021/05/11 18:29:01 by deulee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ MACOS_MAC = -D MACOS
 
 LINUX_MAC = -D LINUX
 
-MACOS_FLAGS = -L $(LIB)minilibx_opengl_20191021 -lmx -framework OpenGL -framework AppKit
+MACOS_FLAGS = -L $(LIB)minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
 
 LINUX_FLAGS = -L $(LIB)minilibx-linux -lmlx -lm -lx11 -lXext -lpthread
 
@@ -103,7 +103,7 @@ SRCS = $(addprefix $(SRCDIR), $(FILES))
 OBJS = ${SRCS:.c=.o}
 
 ${NAME}:	${OBJS}
-			make -c $(LIB)libft
+			make -C $(LIB)libft
 			${CC} ${CFLAGS} $(OBJS) $(FLAGS) -o ${NAME}
 
 all:		${NAME}

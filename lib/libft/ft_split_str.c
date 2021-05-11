@@ -6,13 +6,13 @@
 /*   By: deulee <deulee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 15:51:42 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 16:36:26 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/11 17:42:49 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		mem_error(char **arr)
+char	**mem_error(char **arr)
 {
 	int		i;
 
@@ -97,7 +97,7 @@ char	**ft_split_str(char *str, char *cut)
 		}
 		if (0 == (arr[k] = (char *)malloc(sizeof(char) * (len + 1))))
 			return (mem_error(arr));
-		ft_strlcpy(arr[k++], &s[i - len], len + 1);
+		ft_strlcpy(arr[k++], &str[i - len], len + 1);
 	}
 	arr[k] = 0;
 	return (arr);

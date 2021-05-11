@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:12:54 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 18:29:02 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/11 17:29:15 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	validation_extraction(char **info)
 				info[idx][ft_strlen(info[idx]) ?
 				ft_strlen(info[idx]) - 1 : 0] == ',')
 			flag = false;
-		split = ft_split(info[idx], ",");
+		split = ft_split(info[idx], ',');
 		if (split == NULL)
 			flag = false;
 		else if (!validation_float(split))
@@ -68,7 +68,7 @@ bool	validation_float(char **info)
 
 bool	validation_range(double num, double min, double max)
 {
-	if (num < min || nb > max)
+	if (num < min || num > max)
 		return (false);
 	return (true);
 }

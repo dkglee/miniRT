@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 12:10:03 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 21:45:30 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/11 17:40:33 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE 1024
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 
-typedef struct		s_file
+typedef struct		s_buff
 {
 	int				fd;
 	unsigned int	buff_size;
 	char			buffer[BUFFER_SIZE];
 	char			*backup;
-	struct s_file	*next;
+	struct s_buff	*next;
 }					t_buff;
 
 int					get_next_line(int fd, char **line);

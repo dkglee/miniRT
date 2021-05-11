@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 15:12:55 by deulee            #+#    #+#             */
-/*   Updated: 2021/03/24 15:27:26 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/11 17:41:38 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double		ft_atof(const char *num)
 	if (*num == '+' || *num == '-')
 		if (*num++ == '-')
 			sign = -1.0f;
-	while (is_digit(*num))
+	while (ft_isdigit(*num))
 	{
 		real = real * 10 + (double)(*num - '0');
 		num++;
@@ -46,5 +46,5 @@ double		ft_atof(const char *num)
 		real = real + (decimal * (double)(*num++ - '0'));
 		decimal *= 0.1;
 	}
-	return (result * sign);
+	return (real * sign);
 }

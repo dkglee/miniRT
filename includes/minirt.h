@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 20:54:54 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/11 18:35:36 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include "get_next_line.h"
 # include "vector.h"
 # include "object.h"
-# include "error.h"
-# include "rotation.h"
 # include <stdio.h>
 # include <errno.h>
 # include <stdlib.h>
@@ -307,7 +305,7 @@ bool				validation_plane(t_object *o);
 bool				validation_square(t_object *o);
 bool				validation_triangle(t_object *o);
 bool				validation_cylinder(t_object *o);
-bool				validation_resolution(double horiz, double ver);
+bool				validation_resolution(int horiz, int ver);
 bool				validation_amb_light(double ratio, t_color *color);
 bool				validation_cam(t_vec *normal, double fov);
 bool				validation_light(double ratio, t_color *color);
@@ -325,9 +323,9 @@ void				make_pyramid(t_pyramid *f, t_object *list);
 double				cube_intersection_point(t_vec o, t_vec d, t_object *list);
 void				make_pyramid(t_pyramid *f, t_object *list);
 double				pyramid_intersection_point(t_vec o, t_vec d, t_object *list);
-void				find_intersection(t_ray ray, t_render *list,
+void				find_intersection(t_ray ray, t_object *list,
 			t_object *closet_obj, double *closet_dis);
-void				init_information(t_object *cl_obj, double cl_dis);
+void				init_information(t_object *cl_obj, double *cl_dis);
 int					ray_trace(t_vec origin, t_vec dir, t_render *render, int depth);
 bool				find_distance(double dis[2], t_vec origin, t_vec dir, t_object *list);
 t_vec				get_cy_normal(double dis[2], t_vec origin, t_vec dir, t_object *list);

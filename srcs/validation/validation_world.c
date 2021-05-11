@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:34:43 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 18:28:18 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/11 17:29:46 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	validation_cam(t_vec *normal, double fov)
 	if (normal->x < -1.0f || normal->x > 1.0f ||
 			normal->y < -1.0f || normal->y < 1.0f ||
 			normal->z < -1.0f || normal->z < 1.0f ||
-			degree < 0.0f || degree > 180.0f)
+			fov < 0.0f || fov > 180.0f)
 		return (false);
 	return (true);
 }
