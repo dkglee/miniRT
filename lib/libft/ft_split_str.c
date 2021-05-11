@@ -6,11 +6,12 @@
 /*   By: deulee <deulee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 15:51:42 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/11 17:42:49 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/11 21:10:12 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 char	**mem_error(char **arr)
 {
@@ -51,7 +52,6 @@ int		arr_size(char *str, char *cut)
 	int		size;
 	int		i;
 	char	*tmp;
-	int		k;
 
 	size = 1;
 	i = 0;
@@ -60,14 +60,10 @@ int		arr_size(char *str, char *cut)
 		return (mem_trim(tmp));
 	while (tmp[i])
 	{
-		k = 0;
-		while (cut[k])
-		{
-			if (cut[k] == tmp[i])
-				size++;
-			while (check_split(tmp[i], cut))
-				i++;
-		}
+		if (check_split(tmp[i], cut))
+			size++;
+		while (check_split(tmp[i], cut))
+			i++;
 		i++;
 	}
 	free(tmp);

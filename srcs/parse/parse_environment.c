@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:52:13 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 18:27:30 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/11 21:42:22 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@ void	parse_resolution(t_parse *parse)
 		error("Resolution can be declared only once time", parse_error, parse);
 	else
 		parse->trace->res_idx = 1;
-	if (count_info(parse->info) != 3)
+	if (count_info(parse->info++) != 3)
 		error("Resolution Information Number Error", parse_error, parse);
-	parse->info++;
 	if (!validation_extraction(parse->info))
 		error("Resolution Information Error", parse_error, parse);
 	if (!parse_int(parse->info[0], &parse->trace->x_res) ||
 			!parse_int(parse->info[1], &parse->trace->y_res) ||
 			!validation_resolution(parse->trace->x_res, parse->trace->y_res))
 		error("Resolution Parse Error", parse_error, parse);
+	printf("%d", parse->trace->x_res);
+	printf("%d", parse->trace->y_res);
 }
 
 void	parse_amb_light(t_parse *parse)
@@ -63,7 +64,7 @@ void	parse_cam(t_parse *parse)
 	new->next = NULL;
 	ft_addcam_back(&parse->mlx->cam, new);
 //	new->idx = ft_lstsize(parse->mlx->cam);
-	parse->trace->cam_nb = new->idx;
+//	parse->trace->cam_nb = new->idx;
 	if (count_info(parse->info++) != 4)
 		error("Cam Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info))

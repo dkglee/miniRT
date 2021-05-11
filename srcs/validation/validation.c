@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:12:54 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/11 17:29:15 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/11 21:40:01 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ bool	validation_extraction(char **info)
 
 	idx = 0;
 	flag = true;
+	printf("1: %s\n", info[idx]);
 	while (info[idx])
 	{
+		printf("%s\n", info[idx]);
 		if (info[idx][0] == ',' ||
 				info[idx][ft_strlen(info[idx]) ?
 				ft_strlen(info[idx]) - 1 : 0] == ',')
