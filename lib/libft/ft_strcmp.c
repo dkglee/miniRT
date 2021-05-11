@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/09 19:44:02 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 19:47:25 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/11 18:55:44 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_strcmp(char *s1, char *s2)
 	while (s1[i] || s2[i])
 	{
 		if (s1[i] != s2[i])
-			return (s[i] - s2[i]);
+			return (s1[i] - s2[i]);
 		i++;
 	}
 	return (0);

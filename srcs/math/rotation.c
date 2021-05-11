@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 18:11:05 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 23:30:46 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/11 18:54:45 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_vec	rotation_x(t_vec v, double degree)
 	t_vec	rotated;
 	double	rad_angle;
 
-	rad_angle = ft_cal_rad(degree);
+	rad_angle = ft_deg2rad(degree);
 	row1 = ft_vec_set(1, 0, 0);
 	row2 = ft_vec_set(0, cos(rad_angle), -sin(rad_angle));
 	row3 = ft_vec_set(0, sin(rad_angle), cos(rad_angle));
@@ -46,7 +46,7 @@ t_vec	rotation_y(t_vec v, double degree)
 	t_vec	rotated;
 	double	rad_angle;
 
-	rad_angle = ft_cal_rad(degree);
+	rad_angle = ft_deg2rad(degree);
 	row1 = ft_vec_set(cos(rad_angle), 0, sin(rad_angle));
 	row2 = ft_vec_set(0, 1, 0);
 	row3 = ft_vec_set(-sin(rad_angle), 0, cos(rad_angle));
@@ -64,7 +64,7 @@ t_vec	rotation_z(t_vec v, double degree)
 	t_vec	rotated;
 	double	rad_angle;
 
-	rad_angle = ft_cal_rad(degree);
+	rad_angle = ft_deg2rad(degree);
 	row1 = ft_vec_set(cos(rad_angle), -sin(rad_angle), 0);
 	row2 = ft_vec_set(sin(rad_angle), cos(rad_angle), 0);
 	row3 = ft_vec_set(0, 0, 1);
