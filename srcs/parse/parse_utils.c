@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:41:38 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/12 18:06:32 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/12 18:59:02 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,9 @@ int		count_info(char **info)
 bool	parse_double(char *info, double *value)
 {
 	bool	flag;
-	char	**split;
 
 	flag = true;
-	split = NULL;
-	split = ft_split_str(info, ",");
-	if (count_info(split) != 1)
-		flag = false;
-	else
-		*value = ft_atof(info);
-	clear_info(split);
-	split = NULL;
+	*value = ft_atof(info);
 	return (flag);
 }
 
