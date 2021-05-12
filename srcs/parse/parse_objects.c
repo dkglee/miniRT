@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 21:51:33 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 17:10:14 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/12 15:46:53 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	parse_sphere(t_parse *parse, t_object *list)
 	new = ft_new_object(list);
 	if (count_info(parse->info++) != 9)
 		error("Sphere Information Number Error", parse_error, parse);
-	if (!validation_extraction(parse->info))
+	if (!validation_extraction(parse->info, SP))
 		error("Sphere Information Error", parse_error, error);
 	new->flag = SP;
 	if (!parse_vec(parse->info[0], &new->fig.sp.center) ||
@@ -43,7 +43,7 @@ void	parse_plane(t_parse *parse, t_object *list)
 	new = ft_new_object(list);
 	if (count_info(parse->info++) != 9)
 		error("Plane Information Number Error", parse_error, parse);
-	if (!validation_extraction(parse->info))
+	if (!validation_extraction(parse->info, PL))
 		error("Plane Information Error", parse_error, error);
 	new->flag = PL;
 	if (!parse_vec(parse->info[0], &new->fig.pl.p) ||
@@ -67,7 +67,7 @@ void	parse_square(t_parse *parse, t_object *list)
 	new = ft_new_object(list);
 	if (count_info(parse->info++) != 10)
 		error("Square Information Number Error", parse_error, parse);
-	if (!validation_extraction(parse->info))
+	if (!validation_extraction(parse->info, SQ))
 		error("Square Information Error", parse_error, error);
 	new->flag = SQ;
 	if (!parse_vec(parse->info[0], &new->fig.sq.center) ||
@@ -92,7 +92,7 @@ void	parse_triangle(t_parse *parse, t_object *list)
 	new = ft_new_object(list);
 	if (count_info(parse->info++) != 10)
 		error("Triangle Information Number Error", parse_error, parse);
-	if (!validation_extraction(parse->info))
+	if (!validation_extraction(parse->info, TR))
 		error("Triangle Information Error", parse_error, error);
 	new->flag = TR;
 	if (!parse_vec(parse->info[0], &new->fig.tr.p1) ||
@@ -118,7 +118,7 @@ void	parse_cylinder(t_parse *parse, t_object *list)
 	new = ft_new_object(list);
 	if (count_info(parse->info++) != 11)
 		error("Cylinder Information Number Error", parse_error, parse);
-	if (!validation_extraction(parse->info))
+	if (!validation_extraction(parse->info, CY))
 		error("Cylinder Information Error", parse_error, error);
 	new->flag = CY;
 	if (!parse_vec(parse->info[0], &new->fig.cy.center) ||

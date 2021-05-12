@@ -6,7 +6,7 @@
 #    By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/05 13:51:29 by deulee            #+#    #+#              #
-#    Updated: 2021/05/11 21:27:37 by deulee           ###   ########.fr        #
+#    Updated: 2021/05/12 17:06:24 by deulee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,11 @@ FILES = minirt.c \
 		$(VALDIR)validation.c \
 		$(VALDIR)validation_object.c \
 		$(VALDIR)validation_world.c \
-		$(VALDIR)validation_bonus.c
+		$(VALDIR)validation_bonus.c \
+		$(VALDIR)validation_extraction.c \
+		$(VALDIR)validation_extraction_object.c \
+		$(VALDIR)validation_extraction_bonus.c \
+		$(VALDIR)validation_utils.c
 
 SRCS = $(addprefix $(SRCDIR), $(FILES))
 

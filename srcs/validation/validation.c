@@ -6,37 +6,37 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:12:54 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/11 21:40:01 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/12 17:04:22 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool	validation_extraction(char **info)
+bool	validation_extraction(char **info, int flag)
 {
-	bool	flag;
-	int		idx;
-	char	**split;
-
-	idx = 0;
-	flag = true;
-	printf("1: %s\n", info[idx]);
-	while (info[idx])
-	{
-		printf("%s\n", info[idx]);
-		if (info[idx][0] == ',' ||
-				info[idx][ft_strlen(info[idx]) ?
-				ft_strlen(info[idx]) - 1 : 0] == ',')
-			flag = false;
-		split = ft_split(info[idx], ',');
-		if (split == NULL)
-			flag = false;
-		else if (!validation_float(split))
-			flag = false;
-		clear_info(split);
-		idx++;
-	}
-	return (flag);
+	if (flag == RS)
+		return (extraction_resolution(info));
+	else if (flag == AM)
+		return (extraction_amb_light(info));
+	else if (flag == CM)
+		return (extraction_cam(info));
+	else if (flag == LI)
+		return (extraction_light(info));
+	else if (flag == SP)
+		return (extraction_sphere(info));
+	else if (flag == PL)
+		return (extraction_plane(info));
+	else if (flag == SQ)
+		return (extraction_square(info));
+	else if (flag == TR)
+		return (extraction_triangle(info));
+	else if (flag == CY)
+		return (extraction_cylinder(info));
+	else if (flag == CU)
+		return (extraction_cube(info));
+	else if (flag == PY)
+		return (extraction_pyramid(info));
+	return (false);
 }
 
 bool	validation_float(char **info)

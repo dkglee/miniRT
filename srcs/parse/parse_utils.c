@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:41:38 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 17:17:28 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/12 18:06:32 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,12 @@ bool	parse_double(char *info, double *value)
 	char	**split;
 
 	flag = true;
-	split = ft_split(info, ',');
+	split = NULL;
+	split = ft_split_str(info, ",");
 	if (count_info(split) != 1)
-	{
 		flag = false;
-		return (flag);
-	}
-	*value = ft_atof(info);
+	else
+		*value = ft_atof(info);
 	clear_info(split);
 	split = NULL;
 	return (flag);
@@ -48,7 +47,8 @@ bool	parse_vec(char *info, t_vec *v)
 	char	**split;
 
 	flag = true;
-	split = ft_split(info, ',');
+	split = NULL;
+	split = ft_split_str(info, ",");
 	if (count_info(split) != 3)
 		flag = false;
 	else
@@ -65,18 +65,9 @@ bool	parse_vec(char *info, t_vec *v)
 bool	parse_int(char *info, int *value)
 {
 	bool	flag;
-	char	**split;
 
 	flag = true;
-	split = ft_split(info, ',');
-	if (count_info(split) != 1)
-	{
-		flag = false;
-		return (flag);
-	}
 	*value = ft_atoi(info);
-	clear_info(split);
-	split = NULL;
 	return (flag);
 }
 

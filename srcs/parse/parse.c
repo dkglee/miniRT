@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 15:37:52 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/11 21:39:22 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/12 18:41:17 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,14 @@ void	start_parse(t_parse *parse, t_object *list)
 
 	while ((flag = get_next_line(parse->fd, &(parse->line))) != -1)
 	{
-		printf("4\n");
-		printf("%s\n", parse->line);
 		if (NULL == (parse->info = ft_split_str(parse->line, "\t\v\f\r ")))
 			error(NULL, parse_error, parse);
-		printf("5\n");
-		printf("%s\n", parse->info[0]);
 		if (parse->info[0] != NULL)
 			parse_info(parse, list);
 		if (flag == 0)
 			break ;
-		printf("6\n");
-		free(parse->line);
-		printf("8\n");
 		clear_info(parse->info);
+		free(parse->line);
 		parse->info = NULL;
 		parse->line = NULL;
 	}
@@ -66,10 +60,7 @@ void	start_parse(t_parse *parse, t_object *list)
 void	parse_info(t_parse *parse, t_object *list)
 {
 	if (!ft_strcmp(parse->info[0], RESOLUTION))
-	{
-		printf("7\n");
 		parse_resolution(parse);
-	}
 	else if (!ft_strcmp(parse->info[0], AMB_LIGHT))
 		parse_amb_light(parse);
 	else if (!ft_strcmp(parse->info[0], CAM))

@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/11 18:35:36 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/12 16:55:18 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@
 # define CY 5
 # define CU 6
 # define PY 7
+
+# define RS 8
+# define AM 9
+# define CM 10
+# define LI 11
 
 # define RESOLUTION "R"
 # define AMB_LIGHT "A"
@@ -295,8 +300,22 @@ void				ft_objadd_back(t_object **head, t_object *new);
 
 /* parse validation */
 
-
-bool				validation_extraction(char **info);
+bool				extraction_resolution(char **info);
+bool				extraction_amb_light(char **info);
+bool				extraction_cam(char **info);
+bool				extraction_light(char **info);
+bool				extraction_sphere(char **info);
+bool				extraction_plane(char **info);
+bool				extraction_triangle(char **info);
+bool				extraction_square(char **info);
+bool				extraction_cylinder(char **info);
+bool				extraction_cube(char **info);
+bool				extraction_pyramid(char **info);
+bool				validate_int(char *info);
+bool				validate_double(char *info);
+bool				validate_vector(char *info);
+bool				validate_color(char *info);
+bool				validation_extraction(char **info, int flag);
 bool				validation_float(char **info);
 bool				validation_range(double num, double min, double max);
 bool				validation_sqaure(t_object *o);

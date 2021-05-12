@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:51:49 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/11 18:58:59 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/12 17:10:56 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,13 @@ int		main(int argc, char **argv)
 
 	list = NULL;
 	check_arg(argc, argv);
-	printf("1\n");
 	size = ft_strlen(argv[1]);
 	if (size < 3)
 		error("Filename Extension Error", NULL, NULL);
 	else if (argv[1][size - 3] != '.' || argv[1][size - 2] != 'r' ||
 			argv[1][size - 1] != 't')
 		error("Filename Extension Error", NULL, NULL);
-	printf("2\n");
 	parse(&mlx, &trace, list, argv);
-	printf("3\n");
 	init_mlx(&mlx, &trace);
 	init_render(mlx, trace, list, render);
 	multithread_render(render);

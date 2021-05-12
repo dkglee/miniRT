@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:29:00 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 17:15:06 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/12 17:03:36 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	parse_cube(t_parse *parse, t_object *list)
 	new = ft_new_object(list);
 	if (count_info(parse->info++) != 9)
 		error("Cube Information Number Error", parse_error, parse);
-	if (!validation_extraction(parse->info))
+	if (!validation_extraction(parse->info, CU))
 		error("Cube Information Error", parse_error, error);
 	new->flag = CU;
 	if (!parse_vec(parse->info[0], &new->fig.sq.center) ||
@@ -42,7 +42,7 @@ void	parse_pyramid(t_parse *parse, t_object *list)
 	new = ft_new_object(list);
 	if (count_info(parse->info++) != 9)
 		error("Pyramid Information Number Error", parse_error, parse);
-	if (!validation_extraction(parse->info))
+	if (!validation_extraction(parse->info, PY))
 		error("Pyramid Information Error", parse_error, error);
 	new->flag = PY;
 	if (!parse_vec(parse->info[0], &new->fig.sq.center) ||

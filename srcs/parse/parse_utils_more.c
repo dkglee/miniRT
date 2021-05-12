@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:08:14 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 17:27:56 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/12 18:36:39 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ void	clear_info(char **info)
 	int		i;
 
 	i = 0;
+	printf("%s\n", info[i]);
+	if (info == NULL)
+		return ;
 	while (info[i])
 	{
 		free(info[i]);
@@ -79,8 +82,9 @@ bool	parse_vec_color(char *info, t_color *color)
 	bool	flag;
 	char	**split;
 
+	split = NULL;
 	flag = true;
-	split = ft_split(info, ',');
+	split = ft_split_str(info, ",");
 	if (count_info(split) != 3)
 		flag = false;
 	else
