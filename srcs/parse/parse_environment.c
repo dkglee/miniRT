@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:52:13 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/12 18:19:23 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/12 18:47:27 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	parse_resolution(t_parse *parse)
 		error("Resolution can be declared only once time", parse_error, parse);
 	else
 		parse->trace->res_idx = 1;
-	if (count_info(parse->info++) != 3)
+	if (count_info(parse->info) != 3)
 		error("Resolution Information Number Error", parse_error, parse);
-	if (!validation_extraction(parse->info, RS))
+	if (!validation_extraction(parse->info + 1, RS))
 		error("Resolution Information Error", parse_error, parse);
-	if (!parse_int(parse->info[0], &parse->trace->x_res) ||
-			!parse_int(parse->info[1], &parse->trace->y_res) ||
+	if (!parse_int(parse->info[1], &parse->trace->x_res) ||
+			!parse_int(parse->info[2], &parse->trace->y_res) ||
 			!validation_resolution(parse->trace->x_res, parse->trace->y_res))
 		error("Resolution Parse Error", parse_error, parse);
 }
@@ -38,12 +38,12 @@ void	parse_amb_light(t_parse *parse)
 		error("Ambient Light can be declared once time", parse_error, parse);
 	else
 		parse->trace->amb_idx = 1;
-	if (count_info(parse->info++) != 3)
+	if (count_info(parse->info) != 3)
 		error("Ambient Light Information Number Error", parse_error, parse);
-	if (!validation_extraction(parse->info, AM))
+	if (!validation_extraction(parse->info + 1, AM))
 		error("Ambient Light Information Error", parse_error, parse);
-	flag = parse_double(parse->info[0], &parse->trace->amb_light);
-	flag = parse_vec_color(parse->info[1], &color);
+	flag = parse_double(parse->info[1], &parse->trace->amb_light);
+	flag = parse_vec_color(parse->info[2], &color);
 	flag = validation_amb_light(parse->trace->amb_light, &color);
 	if (flag == false)
 		error("Ambient Light Parse Error", parse_error, parse);
@@ -61,13 +61,13 @@ void	parse_cam(t_parse *parse)
 		error("Cam Malloc Error", NULL, NULL);
 	new->next = NULL;
 	ft_addcam_back(&parse->mlx->cam, new);
-	if (count_info(parse->info++) != 4)
+	if (count_info(parse->info) != 4)
 		error("Cam Information Number Error", parse_error, parse);
-	if (!validation_extraction(parse->info, CM))
+	if (!validation_extraction(parse->info + 1, CM))
 		error("Cam Information Error", parse_error, parse);
-	if (!parse_vec(parse->info[0], &new->o) ||
-			!parse_vec(parse->info[1], &new->nv) ||
-			!parse_double(parse->info[2], &new->fov) ||
+	if (!parse_vec(parse->info[1], &new->o) ||
+			!parse_vec(parse->info[2], &new->nv) ||
+			!parse_double(parse->info[3], &new->fov) ||
 			!validation_cam(&new->nv, new->fov))
 		error("Cam Parse Error", parse_error, parse);
 	new->nv = ft_vec_unit(new->nv);
@@ -88,13 +88,13 @@ void	parse_light(t_parse *parse)
 		error("Light Malloc Error", NULL, NULL);
 	new->next = NULL;
 	ft_addlight_back(&parse->trace->light, new);
-	if (count_info(parse->info++) != 4)
+	if (count_info(parse->info) != 4)
 		error("Light Information Number Error", parse_error, parse);
-	if (!validation_extraction(parse->info, LI))
+	if (!validation_extraction(parse->info + 1, LI))
 		error("Light Information Error", parse_error, parse);
-	flag = parse_vec(parse->info[0], &new->o);
-	flag = parse_double(parse->info[1], &new->br);
-	flag = parse_vec_color(parse->info[2], &color);
+	flag = parse_vec(parse->info[1], &new->o);
+	flag = parse_double(parse->info[2], &new->br);
+	flag = parse_vec_color(parse->info[3], &color);
 	flag = validation_light(new->br, &color);
 	if (flag == false)
 		error("Light Parse Error", parse_error, parse);
