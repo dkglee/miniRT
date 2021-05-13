@@ -6,13 +6,13 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:29:00 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/12 18:51:07 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 00:41:58 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	parse_cube(t_parse *parse, t_object *list)
+void	parse_cube(t_parse *parse, t_object **list)
 {
 	t_object	*new;
 
@@ -35,7 +35,7 @@ void	parse_cube(t_parse *parse, t_object *list)
 	new->color = get_color(new->rgb_color);
 }
 
-void	parse_pyramid(t_parse *parse, t_object *list)
+void	parse_pyramid(t_parse *parse, t_object **list)
 {
 	t_object	*new;
 

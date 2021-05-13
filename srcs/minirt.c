@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:51:49 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/12 17:10:56 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 04:04:44 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int		main(int argc, char **argv)
 	t_object	*list;
 	int			size;
 
-	list = NULL;
 	check_arg(argc, argv);
 	size = ft_strlen(argv[1]);
 	if (size < 3)
@@ -68,7 +67,7 @@ int		main(int argc, char **argv)
 	else if (argv[1][size - 3] != '.' || argv[1][size - 2] != 'r' ||
 			argv[1][size - 1] != 't')
 		error("Filename Extension Error", NULL, NULL);
-	parse(&mlx, &trace, list, argv);
+	parse(&mlx, &trace, &list, argv);
 	init_mlx(&mlx, &trace);
 	init_render(mlx, trace, list, render);
 	multithread_render(render);
@@ -77,6 +76,7 @@ int		main(int argc, char **argv)
 		bmp_making(mlx, trace, argv[1]);
 		clear_render(&render[0]);
 	}
-	graphic_loop_mlx(&render[0]);
+	else
+		graphic_loop_mlx(mlx, trace);
 	return (0);
 }

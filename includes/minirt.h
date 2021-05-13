@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/13 19:11:25 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 04:10:36 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ typedef struct		s_tmp
 typedef struct		s_cam
 {
 	int				init;
-	int				idx;
 	t_vec			o;
 	t_vec			nv;
 	double			fov;
@@ -270,20 +269,20 @@ void				init_mlx(t_mlx *mlx, t_scene *trace);
 /* parse */
 
 bool				parse_vec_color(char *info, t_color *color);
-void				parse_cube(t_parse *parse, t_object *list);
-void				parse_pyramid(t_parse *parse, t_object *list);
-void				parse(t_mlx *mlx, t_scene *trace, t_object *list, char **argv);
-void				start_parse(t_parse *parse, t_object *list);
-void				parse_info(t_parse *parse, t_object *list);
+void				parse_cube(t_parse *parse, t_object **list);
+void				parse_pyramid(t_parse *parse, t_object **list);
+void				parse(t_mlx *mlx, t_scene *trace, t_object **list, char **argv);
+void				start_parse(t_parse *parse, t_object **list);
+void				parse_info(t_parse *parse, t_object **list);
 void				parse_resolution(t_parse *parse);
 void				parse_amb_light(t_parse *parse);
 void				parse_cam(t_parse *parse);
 void				parse_light(t_parse *parse);
-void				parse_sphere(t_parse *parse, t_object *list);
-void				parse_plane(t_parse *parse, t_object *list);
-void				parse_square(t_parse *parse, t_object *list);
-void				parse_triangle(t_parse *parse, t_object *list);
-void				parse_cylinder(t_parse *parse, t_object *list);
+void				parse_sphere(t_parse *parse, t_object **list);
+void				parse_plane(t_parse *parse, t_object **list);
+void				parse_square(t_parse *parse, t_object **list);
+void				parse_triangle(t_parse *parse, t_object **list);
+void				parse_cylinder(t_parse *parse, t_object **list);
 int					count_info(char **info);
 bool				parse_double(char *info, double *value);
 bool				parse_vec(char *info, t_vec *v);
@@ -295,7 +294,7 @@ void				clear_parse(void *ptr);
 void				clear_parsing(t_parse *parse);
 void				parse_error(void *ptr);
 void				clear_info(char **info);
-t_object			*ft_new_object(t_object *list);
+t_object			*ft_new_object(t_object **list);
 void				ft_objadd_back(t_object **head, t_object *new);
 int					ft_strlen_vec(char *str);
 double				parse_vec_double(char *info, int len);
@@ -394,8 +393,8 @@ void				clear_render(t_render *render);
 int					calc_avg_simple_color(int a, int b);
 int					calc_avg_ssaa_color(int *color);
 int					close_minirt(t_render *render);
-int					change_cam(int key, t_render *render);
-void				graphic_loop_mlx(t_render *render);
+int					change_cam(int key, t_mlx *mlx);
+void				graphic_loop_mlx(t_mlx mlx, t_scene trace);
 int					*sample_first(int *edge, int last[2], t_tmp tmp, t_render *render);
 int					*sample_center(int *edge, int last[2], t_tmp tmp, t_render *render);
 int					*sample_last(int *edge, int last[2], t_tmp tmp, t_render *render);

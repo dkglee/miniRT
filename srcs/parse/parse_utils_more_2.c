@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 17:05:46 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 16:57:36 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 01:27:09 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,15 @@ void	ft_addlight_back(t_light **head, t_light *new)
 	fin->next = new;
 }
 
-t_object	*ft_new_object(t_object *list)
+t_object	*ft_new_object(t_object **list)
 {
 	t_object	*new;
 
 	new = (t_object *)malloc(sizeof(t_object));
 	if (new == NULL)
 		error("Object Malloc Error", NULL, NULL);
-	ft_objadd_back(&list, new);
+	new->next = NULL;
+	ft_objadd_back(list, new);
 	return (new);
 }
 

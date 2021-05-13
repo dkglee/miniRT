@@ -6,7 +6,7 @@
 #    By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/05 13:51:29 by deulee            #+#    #+#              #
-#    Updated: 2021/05/13 19:08:51 by deulee           ###   ########.fr        #
+#    Updated: 2021/05/14 01:57:32 by deulee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ CC = gcc
 
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror -I $(HEADER) -D NUM_THREADS=$(NUM_THREADS) -g -fsanitize=address
+#CFLAGS = -Wall -Wextra -Werror -I $(HEADER) -D NUM_THREADS=$(NUM_THREADS) -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I $(HEADER) -D NUM_THREADS=1 -g -fsanitize=address
 
 FLAGS = -L $(LIB)libft -lft
 
@@ -48,7 +49,7 @@ LINUX_MAC = -D LINUX
 
 MACOS_FLAGS = -L $(LIB)minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
 
-LINUX_FLAGS = -L $(LIB)minilibx-linux -lmlx -lm -lx11 -lXext -lpthread
+LINUX_FLAGS = -L $(LIB)minilibx-linux -lmlx -lm -lX11 -lXext -lpthread
 
 OSNAME := $(shell uname)
 

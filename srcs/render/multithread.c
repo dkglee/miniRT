@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:56:47 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 18:31:34 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 03:17:51 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	multithread_render(t_render render[NUM_THREADS])
 	idx = 0;
 	while (idx < NUM_THREADS)
 	{
-		pthread_join(threads[idx++], NULL);
+		pthread_join(threads[idx], NULL);
 		idx++;
 	}
 }

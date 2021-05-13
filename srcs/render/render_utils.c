@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:11:17 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 18:36:59 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 04:11:06 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ int		calc_avg_ssaa_color(int *color)
 	}
 	i = 0;
 	while (i < 3)
+	{
 		ssaa_color[i] /= 4;
+		i++;
+	}
 	free(color);
 	return ((ssaa_color[0] << 16) | (ssaa_color[1] << 8) | ssaa_color[2]);
 }
@@ -61,43 +64,40 @@ int		close_minirt(t_render *render)
 	return (1);
 }
 
-int		change_cam(int key, t_render *render)
+int		change_cam(int key, t_mlx *mlx)
 {
 	if (key == K_ESC)
-	{
-		clear_render(render);
 		exit(0);
-	}
 	if (key == K_SP)
 	{
-		if (render->mlx.cam->next == NULL)
+		if (mlx->cam->next == NULL)
 		{
-			render->mlx.cam = render->mlx.start;
+			mlx->cam = mlx->start;
 			mlx_put_image_to_window(
-					render->mlx.mlx_ptr, render->mlx.win_ptr,
-					render->mlx.cam->img, 0, 0);
+					mlx->mlx_ptr, mlx->win_ptr,
+					mlx->cam->img, 0, 0);
 		}
 		else
 		{
-			render->mlx.cam = render->mlx.cam->next;
+			mlx->cam = mlx->cam->next;
 			mlx_put_image_to_window(
-					render->mlx.mlx_ptr, render->mlx.win_ptr, 
-					render->mlx.cam->img, 0, 0);
+					mlx->mlx_ptr, mlx->win_ptr, 
+					mlx->cam->img, 0, 0);
 		}
 		return (1);
 	}
 	return (0);
 }
 
-void	graphic_loop_mlx(t_render *render)
+void	graphic_loop_mlx(t_mlx mlx, t_scene trace)
 {
-	render->mlx.win_ptr = mlx_new_window(render->mlx.mlx_ptr, render->trace.x_res, 
-			render->trace.y_res, "miniRT");
-	mlx_put_image_to_window(render->mlx.mlx_ptr, render->mlx.win_ptr,
-			render->mlx.cam->img, 0, 0);
-	mlx_hook(render->mlx.win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK,
+	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, trace.x_res, 
+			trace.y_res, "miniRT");
+	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr,
+			mlx.cam->img, 0, 0);
+	mlx_hook(mlx.win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK,
 			close_minirt, 0);
-	mlx_hook(render->mlx.win_ptr, KEYPRESS, KEYPRESSMASK,
-			change_cam, render);
-	mlx_loop(render->mlx.mlx_ptr);
+	mlx_hook(mlx.win_ptr, KEYPRESS, KEYPRESSMASK,
+			change_cam, &mlx);
+	mlx_loop(mlx.mlx_ptr);
 }

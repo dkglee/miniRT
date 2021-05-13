@@ -6,13 +6,13 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 21:51:33 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/12 18:50:04 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 00:40:21 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	parse_sphere(t_parse *parse, t_object *list)
+void	parse_sphere(t_parse *parse, t_object **list)
 {
 	t_object	*new;
 
@@ -36,7 +36,7 @@ void	parse_sphere(t_parse *parse, t_object *list)
 	new->color = get_color(new->rgb_color);
 }
 
-void	parse_plane(t_parse *parse, t_object *list)
+void	parse_plane(t_parse *parse, t_object **list)
 {
 	t_object	*new;
 
@@ -60,7 +60,7 @@ void	parse_plane(t_parse *parse, t_object *list)
 	new->color = get_color(new->rgb_color);
 }
 
-void	parse_square(t_parse *parse, t_object *list)
+void	parse_square(t_parse *parse, t_object **list)
 {
 	t_object	*new;
 
@@ -85,7 +85,7 @@ void	parse_square(t_parse *parse, t_object *list)
 	new->color = get_color(new->rgb_color);
 }
 
-void	parse_triangle(t_parse *parse, t_object *list)
+void	parse_triangle(t_parse *parse, t_object **list)
 {
 	t_object	*new;
 
@@ -111,7 +111,7 @@ void	parse_triangle(t_parse *parse, t_object *list)
 	new->color = get_color(new->rgb_color);
 }
 
-void	parse_cylinder(t_parse *parse, t_object *list)
+void	parse_cylinder(t_parse *parse, t_object **list)
 {
 	t_object	*new;
 
