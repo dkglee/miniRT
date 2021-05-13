@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:52:13 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/12 18:47:27 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/13 18:17:53 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	parse_amb_light(t_parse *parse)
 		error("Ambient Light Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info + 1, AM))
 		error("Ambient Light Information Error", parse_error, parse);
-	flag = parse_double(parse->info[1], &parse->trace->amb_light);
-	flag = parse_vec_color(parse->info[2], &color);
-	flag = validation_amb_light(parse->trace->amb_light, &color);
+	flag = flag && parse_double(parse->info[1], &parse->trace->amb_light);
+	flag = flag && parse_vec_color(parse->info[2], &color);
+	flag = flag && validation_amb_light(parse->trace->amb_light, &color);
 	if (flag == false)
 		error("Ambient Light Parse Error", parse_error, parse);
 	parse->trace->amb_color = get_color(color);
@@ -54,7 +54,9 @@ void	parse_cam(t_parse *parse)
 {
 	t_cam	*new;
 	t_cam	*begin;
+	bool	flag;
 
+	flag = true;
 	begin = parse->mlx->cam; 
 	new = (t_cam *)malloc(sizeof(t_cam));
 	if (new == NULL)
@@ -65,10 +67,11 @@ void	parse_cam(t_parse *parse)
 		error("Cam Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info + 1, CM))
 		error("Cam Information Error", parse_error, parse);
-	if (!parse_vec(parse->info[1], &new->o) ||
-			!parse_vec(parse->info[2], &new->nv) ||
-			!parse_double(parse->info[3], &new->fov) ||
-			!validation_cam(&new->nv, new->fov))
+	flag = flag && parse_vec(parse->info[1], &new->o);
+	flag = flag && parse_vec(parse->info[2], &new->nv);
+	flag = flag && parse_double(parse->info[3], &new->fov);
+	flag = flag && validation_cam(&new->nv, new->fov);
+	if (flag == false)
 		error("Cam Parse Error", parse_error, parse);
 	new->nv = ft_vec_unit(new->nv);
 	parse->mlx->cam = begin ? begin : new;
@@ -92,10 +95,10 @@ void	parse_light(t_parse *parse)
 		error("Light Information Number Error", parse_error, parse);
 	if (!validation_extraction(parse->info + 1, LI))
 		error("Light Information Error", parse_error, parse);
-	flag = parse_vec(parse->info[1], &new->o);
-	flag = parse_double(parse->info[2], &new->br);
-	flag = parse_vec_color(parse->info[3], &color);
-	flag = validation_light(new->br, &color);
+	flag = flag && parse_vec(parse->info[1], &new->o);
+	flag = flag && parse_double(parse->info[2], &new->br);
+	flag = flag && parse_vec_color(parse->info[3], &color);
+	flag = flag && validation_light(new->br, &color);
 	if (flag == false)
 		error("Light Parse Error", parse_error, parse);
 	new->color = get_color(color);

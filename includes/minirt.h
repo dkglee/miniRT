@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/12 16:55:18 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/13 19:11:25 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,6 +297,10 @@ void				parse_error(void *ptr);
 void				clear_info(char **info);
 t_object			*ft_new_object(t_object *list);
 void				ft_objadd_back(t_object **head, t_object *new);
+int					ft_strlen_vec(char *str);
+double				parse_vec_double(char *info, int len);
+bool				check_line(char *line);
+
 
 /* parse validation */
 

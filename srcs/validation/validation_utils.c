@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 16:17:17 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/12 16:53:42 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/13 17:48:54 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool	validate_vector(char *info)
 	flag = true;
 	while (info[i])
 	{
-		if (!(ft_isdigit(info[i]) || info[i] == '.' || info[i] == ','))
+		if (!(ft_isdigit(info[i]) || info[i] == '.' || info[i] == ',' || info[i] == '-'))
 			flag = false;
 		i++;
 	}
