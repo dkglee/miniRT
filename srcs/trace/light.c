@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 17:12:29 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/14 21:09:03 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/15 01:34:52 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	apply_shading(t_ray ray, t_inter *inter, t_scene trace, t_object *list)
 		trace.light = trace.light->next;
 	}
 	inter->color = color_light(inter->color, rgb);
-//	inter->color = inter->color;
 }
 
 void	get_norm(t_vec p, t_vec d, t_vec *normal, t_object *list)

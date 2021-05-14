@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 19:30:18 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/14 20:22:24 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/15 00:44:01 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 void	render_world(t_render *render)
 {
+	int		edge[render->trace.x_res + 2];
+	int		last[3];
 	int		size;
 	int		color;
 
 	size = render->trace.y_res / NUM_THREADS;
 	render->j = size * render->idx;
-	while (render->j < size * (render->idx + 1))
+	while (render->j < (size * (render->idx + 1)))
 	{
 		render->i = 0;
 		while (render->i < render->trace.x_res)
 		{
-			color = find_pixel_color(render);
+			color = find_pixel_color(render, edge, last);
 			render->mlx.cam->addr[render->j *
 				render->trace.x_res + render->i] = color;
 			render->i++;
@@ -33,14 +35,12 @@ void	render_world(t_render *render)
 	}
 }
 
-int		find_pixel_color(t_render *render)
+int		find_pixel_color(t_render *render, int *edge, int last[2])
 {
 	int		*color;
-	int		last[2];
-	int		edge[render->trace.x_res + 2];
 	t_tmp	tmp;
 
-	tmp.limit = 3;
+	tmp.limit = 5;
 	tmp.x_res = render->trace.x_res;
 	tmp.y_res = render->trace.y_res;
 	tmp.i = render->i;

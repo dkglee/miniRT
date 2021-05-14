@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:48:28 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/14 21:28:32 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/15 01:49:29 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		color_product(int color, double coef)
 
 	mask = 255;
 	r = coef * ((color & (mask << 16)) >> 16);
-	g = coef * ((color & (mask << 8)) >> 16);
+	g = coef * ((color & (mask << 8)) >> 8);
 	b = coef * (color & mask);
 	r = r > 255 ? 255 : r;
 	g = g > 255 ? 255 : g;
@@ -60,7 +60,7 @@ int		color_difference(int x, int y)
 	b[1] = y & mask;
 	distance_power2 = pow((r[1] - r[0]), 2) + pow((g[1] - g[0]), 2) +
 		pow((b[1] - b[0]), 2);
-	return (distance_power2 > 1000);
+	return (distance_power2 > 500);
 }
 
 int		color_light(int color, double rgb[3])

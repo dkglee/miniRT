@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/14 21:46:37 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/15 00:41:56 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -386,7 +386,7 @@ void				*start_render(void *ptr);
 void				multithread_render(t_render render[NUM_THREADS]);
 void				init_render(t_mlx mlx, t_scene trace, t_object *list, t_render *render);
 void				render_world(t_render *render);
-int					find_pixel_color(t_render *render);
+int					find_pixel_color(t_render *render, int *edge, int last[2]);
 void				render_error(void *ptr);
 void				clear_render(t_render *render);
 int					calc_avg_simple_color(int a, int b);

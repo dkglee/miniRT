@@ -6,7 +6,7 @@
 #    By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/05 13:51:29 by deulee            #+#    #+#              #
-#    Updated: 2021/05/14 13:21:38 by deulee           ###   ########.fr        #
+#    Updated: 2021/05/15 01:05:28 by deulee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ FILES = minirt.c \
 		$(PSEDIR)parse_environment.c \
 		$(PSEDIR)parse_objects.c \
 		$(PSEDIR)parse_vector_utils.c \
+		$(PSEDIR)parse_color.c \
 		$(RAYDIR)ray.c \
 		$(RENDIR)multithread.c \
 		$(RENDIR)render.c \
