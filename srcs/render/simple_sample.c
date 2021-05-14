@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:25:16 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 18:39:48 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 16:56:34 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		*sample_first(int *edge, int last[2], t_tmp tmp, t_render *render)
 		color[1] = edge[1];
 		color[2] = calc_ray(6, tmp, render);
 		color[3] = calc_ray(8, tmp, render);
-		last[0] = color[3];
+		last[1] = color[3];
 		edge[0] = color[2];
 	}
 	return (color);
@@ -64,10 +64,10 @@ int		*sample_center(int *edge, int last[2], t_tmp tmp, t_render *render)
 	{
 		color[0] = edge[tmp.i];
 		color[1] = edge[tmp.i + 1];
-		color[2] = last[0];
-		color[3] = calc_ray(3, tmp, render);
+		color[2] = last[1];
+		color[3] = calc_ray(8, tmp, render);
+		last[1] = color[3];
 		edge[tmp.i] = color[2];
-		edge[tmp.i + 1] = color[3];
 	}
 	return (color);
 }
@@ -87,14 +87,14 @@ int		*sample_last(int *edge, int last[2], t_tmp tmp, t_render *render)
 		color[2] = last[1];
 		color[3] = calc_ray(8, tmp, render);
 		edge[tmp.i] = color[2];
-		edge[tmp.i] = color[3];
+		edge[tmp.i + 1] = color[3];
 	}
 	else
 	{
 		color[0] = edge[tmp.i];
 		color[1] = edge[tmp.i + 1];
-		color[2] = last[0];
-		color[3] = calc_ray(3, tmp, render);
+		color[2] = last[1];
+		color[3] = calc_ray(8, tmp, render);
 		edge[tmp.i] = color[2];
 		edge[tmp.i + 1] = color[3];
 	}

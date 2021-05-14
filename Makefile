@@ -6,7 +6,7 @@
 #    By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/05 13:51:29 by deulee            #+#    #+#              #
-#    Updated: 2021/05/14 01:57:32 by deulee           ###   ########.fr        #
+#    Updated: 2021/05/14 13:21:38 by deulee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,7 @@ CC = gcc
 
 RM = rm -rf
 
-#CFLAGS = -Wall -Wextra -Werror -I $(HEADER) -D NUM_THREADS=$(NUM_THREADS) -g -fsanitize=address
-CFLAGS = -Wall -Wextra -Werror -I $(HEADER) -D NUM_THREADS=1 -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I $(HEADER) -D NUM_THREADS=$(NUM_THREADS) -g -fsanitize=address
 
 FLAGS = -L $(LIB)libft -lft
 

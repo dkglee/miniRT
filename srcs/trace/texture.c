@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 20:48:04 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/13 23:37:29 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 16:03:24 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int			checkboard(t_inter *inter)
 	black = 0x000000;
 	white = 0xffffff;
 	location.x = abs((int)floor(inter->p.x));
-	location.y = abs((int)floor(inter->p.x));
-	location.z = abs((int)floor(inter->p.x));
+	location.y = abs((int)floor(inter->p.y));
+	location.z = abs((int)floor(inter->p.z));
 	location.x = (int)location.x % 2;
 	location.y = (int)location.y % 2;
 	location.z = (int)location.z % 2;

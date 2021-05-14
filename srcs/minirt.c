@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:51:49 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/14 04:04:44 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 14:28:01 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 void	init_mlx(t_mlx *mlx, t_scene *trace)
 {
-	int		win_weight;
-	int		win_height;
+//	int		win_weight;
+//	int		win_height;
 
 	mlx->mlx_ptr = mlx_init();
-//	if (OS_NAME == 2) HAVE TO DELETE
-//	{
+/*	if (OS_TYPE == 2)
+	{
 		mlx_get_screen_size(mlx->mlx_ptr, &win_weight, &win_height);
 		trace->x_res = trace->x_res < win_weight ? trace->x_res : win_weight;
 		trace->y_res = trace->y_res < win_height ? trace->y_res : win_height;
-//	}
+	}*/
 	mlx->start = mlx->cam;
+	printf("trace->x_res: %d\n", trace->x_res);
+	printf("trace->y_res: %d\n", trace->y_res);
 	while (mlx->cam)
 	{
 		mlx->cam->img = mlx_new_image(mlx->mlx_ptr, trace->x_res, trace->y_res);

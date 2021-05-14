@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 15:37:52 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/14 01:38:53 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 17:06:25 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,16 @@ void	parse(t_mlx *mlx, t_scene *trace, t_object **list, char **argv)
 	if (parse.fd <= 2)
 		error("File Open Error", NULL, NULL);
 	start_parse(&parse, list);
-/*
+
+	/*
 	printf("--resolution--\n");
 	printf("trace->x_res: %d\n", trace->x_res);
 	printf("trace->y_res: %d\n", trace->y_res);
 	printf("---amb_lit---\n");
 	printf("trace->amb_light_ratio: %f\n", trace->amb_light);
 	printf("trace->amb_color: %x\n", trace->amb_color);
-	while(mlx->cam)
-	{
+//	while(mlx->cam)
+//	{
 	printf("---cam---\n");
 	printf("cam_origin_vec_x: %f\n", mlx->cam->o.x);
 	printf("cam_origin_vec_y: %f\n", mlx->cam->o.y);
@@ -50,7 +51,7 @@ void	parse(t_mlx *mlx, t_scene *trace, t_object **list, char **argv)
 	printf("cam_nv_vec_z: %f\n", mlx->cam->nv.z);
 	printf("cam_fov: %f\n", mlx->cam->fov);
 	mlx->cam = mlx->cam->next;
-	}
+//	}
 	printf("---light---\n");
 	printf("light_origin_vec_x: %f\n", trace->light->o.x);
 	printf("light_origin_vec_y: %f\n", trace->light->o.y);

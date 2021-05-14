@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 15:48:15 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 18:45:38 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 17:07:45 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ssaa_zero(int *color, int c_col, t_tmp tmp, t_render *render)
 	tmp_r.limit = tmp.limit - 1;
 	tmp_r.i = tmp.i * 2 - 1;
 	tmp_r.j = tmp.j * 2 - 1;
-	tmp_r.x_res = tmp.y_res * 2;
+	tmp_r.x_res = tmp.x_res * 2;
 	tmp_r.y_res = tmp.y_res * 2;
 	c = super_sample(subtable, tmp_r, render);
 	return (c);
@@ -51,7 +51,7 @@ int		ssaa_one(int *color, int c_col, t_tmp tmp, t_render *render)
 	tmp_r.limit = tmp.limit - 1;
 	tmp_r.i = tmp.i * 2 - 1;
 	tmp_r.j = tmp.j * 2 - 1;
-	tmp_r.x_res = tmp.y_res * 2;
+	tmp_r.x_res = tmp.x_res * 2;
 	tmp_r.y_res = tmp.y_res * 2;
 	c = super_sample(subtable, tmp_r, render);
 	return (c);
@@ -73,7 +73,7 @@ int		ssaa_two(int *color, int c_col, t_tmp tmp, t_render *render)
 	tmp_r.limit = tmp.limit - 1;
 	tmp_r.i = tmp.i * 2 - 1;
 	tmp_r.j = tmp.j * 2 - 1;
-	tmp_r.x_res = tmp.y_res * 2;
+	tmp_r.x_res = tmp.x_res * 2;
 	tmp_r.y_res = tmp.y_res * 2;
 	c = super_sample(subtable, tmp_r, render);
 	return (c);
@@ -95,7 +95,7 @@ int		ssaa_three(int *color, int c_col, t_tmp tmp, t_render *render)
 	tmp_r.limit = tmp.limit - 1;
 	tmp_r.i = tmp.i * 2 - 1;
 	tmp_r.j = tmp.j * 2 - 1;
-	tmp_r.x_res = tmp.y_res * 2;
+	tmp_r.x_res = tmp.x_res * 2;
 	tmp_r.y_res = tmp.y_res * 2;
 	c = super_sample(subtable, tmp_r, render);
 	return (c);

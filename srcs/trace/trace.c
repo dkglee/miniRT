@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:24:36 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/11 17:26:03 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 19:38:34 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ void	find_intersection(t_ray ray, t_object *list,
 	{
 		if (list->flag == SP)
 			dist = sphere_intersection_point(ray.origin, ray.dir, list);
-		if (list->flag == PL)
+		else if (list->flag == PL)
 			dist = plane_intersection_point(ray.origin, ray.dir, list);
-		if (list->flag == SQ)
+		else if (list->flag == SQ)
 			dist = square_intersection_point(ray.origin, ray.dir, list);
-		if (list->flag == TR)
+		else if (list->flag == TR)
 			dist = triangle_intersection_point(ray.origin, ray.dir, list);
-		if (list->flag == CY)
+		else if (list->flag == CY)
 			dist = cylinder_intersection_point(ray.origin, ray.dir, list);
-		if (list->flag == CU)
+		else if (list->flag == CU)
 			dist = cube_intersection_point(ray.origin, ray.dir, list);
-		if (list->flag == PY)
+		else if (list->flag == PY)
 			dist = pyramid_intersection_point(ray.origin, ray.dir, list);
 		if (dist < *closet_dis && dist > EPSILON)
 		{

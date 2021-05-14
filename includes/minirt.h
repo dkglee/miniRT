@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/14 04:10:36 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 21:46:37 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,6 @@ typedef	struct		s_inter
 	int				ref_color;
 	t_vec			norm;
 	t_vec			p;
-	t_vec			ref_vec;
 }					t_inter;
 
 typedef	struct		s_bmpinfhead
@@ -244,7 +243,7 @@ void				error(char *str, void (*func)(void *), void *arg);
 int					color_product(int color, double coef);
 int					color_add(int x, int y);
 int					color_difference(int x, int y);
-int					color_light(int color, t_color rgb);
+int					color_light(int color, double rgb[3]);
 
 double				ft_vec_dis(t_vec v, t_vec u);
 t_vec				rotation_x(t_vec v, double degree);
@@ -367,7 +366,7 @@ double				triangle_intersection_point(t_vec origin, t_vec dir, t_object *list);
 
 void				apply_shading(t_ray ray, t_inter *inter, t_scene trace, t_object *list);
 void				get_norm(t_vec p, t_vec d, t_vec *normal, t_object *list);
-void				add_light(t_color *rgb, double ratio, int color);
+void				add_light(double (*rgb)[3], double ratio, int color);
 t_vec				reflection(t_vec ray, t_vec normal);
 t_vec				refraction(t_vec dir, t_vec normal, t_object *list);
 double				apply_specular(t_ray ray, t_inter *inter, t_scene trace, t_object *list);

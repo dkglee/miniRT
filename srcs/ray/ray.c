@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 13:58:09 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/11 18:55:09 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 14:19:21 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_vec	set_camera(int n, t_tmp tmp, t_mlx mlx)
 	real_fov = tan(ft_deg2rad(mlx.cam->fov) / 2);
 	x_offset = ((n % 3) / 2);
 	y_offset = ((n / 3) / 2);
-	aspect_ratio = tmp.x_res / tmp.y_res;
+	aspect_ratio = (double)tmp.x_res / (double)tmp.y_res;
 	set.x =
 		((2 * ((tmp.i + x_offset) / tmp.x_res)) - 1) * aspect_ratio * real_fov;
 	set.y = (1 - (2 * ((tmp.j + y_offset) / tmp.y_res))) * real_fov;

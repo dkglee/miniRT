@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:48:28 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 17:15:40 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 21:28:32 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@ int		color_product(int color, double coef)
 	r = coef * ((color & (mask << 16)) >> 16);
 	g = coef * ((color & (mask << 8)) >> 16);
 	b = coef * (color & mask);
-	r = r < 255 ? r : 255;
-	g = g < 255 ? g : 255;
-	b = b < 255 ? b : 255;
-	r = r << 16;
-	g = g << 8;
-	return (r | g | b);
+	r = r > 255 ? 255 : r;
+	g = g > 255 ? 255 : g;
+	b = b > 255 ? 255 : b;
+	return ((r << 16) | (g << 8) | b);
 }
 
 int		color_add(int x, int y)
@@ -62,22 +60,24 @@ int		color_difference(int x, int y)
 	b[1] = y & mask;
 	distance_power2 = pow((r[1] - r[0]), 2) + pow((g[1] - g[0]), 2) +
 		pow((b[1] - b[0]), 2);
-	return (distance_power2);
+	return (distance_power2 > 1000);
 }
 
-int		color_light(int color, t_color rgb)
+int		color_light(int color, double rgb[3])
 {
 	unsigned int	mask;
 	unsigned int	r;
 	unsigned int	g;
 	unsigned int	b;
 
-	mask = 255;
-	r = rgb.x * ((color & (mask << 16)) >> 16);
-	g = rgb.y * ((color & (mask << 8)) >> 8);
-	b = rgb.z * (color & mask);
-	r = r < 255 ? r : 255;
-	g = g < 255 ? g : 255;
-	b = b < 255 ? b : 255;
+	mask = 255 << 16;
+	r = rgb[0] * ((color & mask) >> 16);
+	mask >>= 8;
+	g = rgb[1] * ((color & mask) >> 8);
+	mask >>= 8;
+	b = rgb[2] * (color & mask);
+	r = r > 255 ? 255 : r;
+	g = g > 255 ? 255 : g;
+	b = b > 255 ? 255 : b;
 	return ((r << 16) | (g << 8) | b);
 }

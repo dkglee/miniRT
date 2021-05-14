@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 19:30:18 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/14 04:20:34 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/14 20:22:24 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int		find_pixel_color(t_render *render)
 	tmp.j = render->j;
 	render->trace.bgr = 0x202020;
 	color = simple_sample(edge, last, tmp, render);
-	if ((color_difference(color[0], color[3]) > 1000) ||
-			(color_difference(color[1], color[2]) > 1000))
+	if (color_difference(color[0], color[3]) ||
+			color_difference(color[1], color[2]))
 		return (super_sample(color, tmp, render));
 	return (calc_avg_ssaa_color(color));
 }
