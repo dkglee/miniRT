@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/15 00:41:56 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/15 11:52:55 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ typedef	struct		s_inter
 	int				ref_color;
 	t_vec			norm;
 	t_vec			p;
+	t_vec			ref_vec;
 }					t_inter;
 
 typedef	struct		s_bmpinfhead
