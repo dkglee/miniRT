@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 21:38:07 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 19:09:06 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 01:12:20 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool		find_distance(double dis[2], t_vec origin, t_vec dir, t_object *list)
 		dis[1] = INFINITY;
 		return (false);
 	}
-	return (1);
+	return (true);
 }
 
 t_vec		get_cy_normal(double dis[2], t_vec origin, t_vec dir, t_object *list)
@@ -75,7 +75,7 @@ double		intersection_cylinder(t_vec origin, t_vec dir, t_vec *cy_normal, t_objec
 	bool	flag;
 
 	flag = find_distance(dis, origin, dir, list);
-	if (flag == true)
+	if (flag == false)
 		return (INFINITY);
 	list->fig.cy.dist1 = ft_vec_dot(list->fig.cy.nv, ft_vec_sub(
 				ft_vec_product(dis[0], dir), ft_vec_sub(list->fig.cy.center,
@@ -103,7 +103,7 @@ double		intersection_circle(t_vec origin, t_vec dir, t_object *list)
 			ft_vec_product(list->fig.cy.height, list->fig.cy.nv));
 	dis[0] = intersection_plane(origin, dir, list->fig.cy.center, list->fig.cy.nv);
 	dis[1] = intersection_plane(origin, dir, circle2, list->fig.cy.nv);
-	if (dis[0] < INFINITY || dis[0] < INFINITY)
+	if (dis[0] < INFINITY || dis[1] < INFINITY)
 	{
 		point1 = ft_vec_add(origin, ft_vec_product(dis[0], dir));
 		point2 = ft_vec_add(origin, ft_vec_product(dis[1], dir));
@@ -117,6 +117,7 @@ double		intersection_circle(t_vec origin, t_vec dir, t_object *list)
 		else if (dis[1] < INFINITY && ft_vec_dis(point2, circle2) <=
 				list->fig.cy.radius)
 			return (dis[1]);
+		return (INFINITY);
 	}
 	return (INFINITY);
 }

@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:51:49 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/14 14:28:01 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/15 13:52:56 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int		main(int argc, char **argv)
 	}
 	else
 		graphic_loop_mlx(mlx, trace);
+	printf("hello");
 	return (0);
 }

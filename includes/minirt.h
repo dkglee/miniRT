@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/15 11:52:55 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/15 14:00:01 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 #  define OS_TYPE 2
 # endif
 
-# define REFLECTION_LIMIT 3
+# define REFLECTION_LIMIT 5
 
 # define EPSILON 0.00001
 

@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 21:30:01 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/10 18:59:50 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 00:42:18 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void		make_pyramid(t_pyramid *f, t_object *list)
 	{
 		f->corner[i] = ft_vec_add(list->fig.sq.center,
 				ft_vec_product(list->fig.sq.side / 2, f->normal[i]));
-		f->corner[i] = ft_vec_add(list->fig.sq.center,
+		f->corner[i] = ft_vec_add(f->corner[i],
 				ft_vec_product(list->fig.sq.side / 2, f->normal[i + 1]));
 		i++;
 	}
