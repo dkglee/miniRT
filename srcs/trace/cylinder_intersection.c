@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 21:38:07 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/16 18:48:27 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 19:46:33 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,6 @@ bool		find_distance(double dis[2], t_vec origin, t_vec dir, t_object *list)
 		dis[1] = INFINITY;
 		return (false);
 	}
-	/*
-	if (((dis[0] < EPSILON) && (dis[1] < EPSILON)) || 
-			(!((dis[0] - dis[0] > -1) && (dis[0] - dis[0] < 1)) &&
-			 !((dis[1] - dis[1] > -1) && (dis[1] - dis[1] < 1))))
-	{
-		dis[0] = INFINITY;
-		dis[1] = INFINITY;
-		return (false);
-	}
-*/
 	return (true);
 }
 

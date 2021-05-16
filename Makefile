@@ -6,7 +6,7 @@
 #    By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/05 13:51:29 by deulee            #+#    #+#              #
-#    Updated: 2021/05/16 14:34:52 by deulee           ###   ########.fr        #
+#    Updated: 2021/05/16 20:26:12 by deulee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,11 +34,17 @@ VALDIR = validation/
 
 LIB = lib/
 
-CC = gcc
+CC = gcc 
 
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror -I $(HEADER) -D NUM_THREADS=$(NUM_THREADS) -g -fsanitize=address
+WFLAGS = -Wall -Wextra -Werror
+
+INCFLAGS = -I$(HEADER)
+
+DEBUGFLAGS = -g -fsanitize=address
+
+CFLAGS = $(WFLAGS) $(INCFLAGS) -D NUM_THREADS=$(NUM_THREADS) $(DEBUGFLAGS)
 
 FLAGS = -L $(LIB)libft -lft
 

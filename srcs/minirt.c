@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:51:49 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/16 15:24:59 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 20:27:23 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 void	init_mlx(t_mlx *mlx, t_scene *trace)
 {
-//	int		win_weight;
-//	int		win_height;
+	int		win_weight;
+	int		win_height;
 
 	mlx->mlx_ptr = mlx_init();
-/*	if (OS_TYPE == 2)
-	{
-		mlx_get_screen_size(mlx->mlx_ptr, &win_weight, &win_height);
-		trace->x_res = trace->x_res < win_weight ? trace->x_res : win_weight;
-		trace->y_res = trace->y_res < win_height ? trace->y_res : win_height;
-	}*/
+	win_weight = 5120;
+	win_height = 2880;
+	trace->x_res = trace->x_res < win_weight ? trace->x_res : win_weight;
+	trace->y_res = trace->y_res < win_height ? trace->y_res : win_height;
 	mlx->start = mlx->cam;
 	while (mlx->cam)
 	{
@@ -34,17 +32,6 @@ void	init_mlx(t_mlx *mlx, t_scene *trace)
 	}
 	mlx->cam = mlx->start;
 }
-
-#ifndef LINUX
-
-int		mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey)
-{
-	mlx_ptr = (int *)mlx_ptr;
-	sizex = sizey;
-	return (0);
-}
-
-#endif
 
 void	clear_memory(t_mlx *mlx, t_scene *trace, t_object **head)
 {
