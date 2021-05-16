@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 20:46:17 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/09 23:26:34 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 15:14:45 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,28 @@
 
 int		create_fd(char *name)
 {
-	int		i;
-	int		start;
+	int		i[2];
 	char	*tmp_name;
+	char	*tmp_name_2;
 	char	*file_name;
 	int		fd;
 
-	i = 0;
-	start = 0;
-	while (name[i])
+	i[0] = 0;
+	i[1] = 0;
+	while (name[i[0]])
 	{
-		if (name[i] == '/')
-			start = i;
-		i++;
+		if (name[i[0]] == '/')
+			i[1] = i[0] + 1;
+		(i[0])++;
 	}
-	tmp_name = ft_strjoin("images/", name + start);
-	file_name = ft_strjoin(tmp_name, ".bmp");
-	free(tmp_name);
-	tmp_name = NULL;
+	tmp_name = ft_strndup(name + i[1], ft_strlen(name + i[1]) - 3);
+	tmp_name_2 = ft_strjoin("images/", tmp_name);
+	file_name = ft_strjoin(tmp_name_2, ".bmp");
 	fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC,
 			S_IRUSR | S_IWUSR);
 	if (fd <= 0)
 		error("Fd Making Error", NULL, NULL);
-	free(file_name);
-	file_name = NULL;
+	name_free(&tmp_name, &tmp_name_2, &file_name);
 	return (fd);
 }
 
@@ -80,7 +78,7 @@ void	write_head(int fd, t_bmpheader header, t_bmpinfhead info)
 	write(fd, &info.biimport_color, 4);
 }
 
-char	*write_contents(t_mlx mlx, t_scene trace)
+void	write_contents(int fd, t_mlx mlx, t_scene trace)
 {
 	char	*data;
 	int		size;
@@ -98,12 +96,13 @@ char	*write_contents(t_mlx mlx, t_scene trace)
 	while (i < size)
 	{
 		data[j++] = mlx.cam->addr[i] & mask;
-		data[j++] = (mlx.cam->addr[i] & (mask << 8)) >> 8;
-		data[j++] = (mlx.cam->addr[i] & (mask << 16)) >> 16;
+		data[j++] = (mlx.cam->addr[i] & mask << 8) >> 8;
+		data[j++] = (mlx.cam->addr[i] & mask << 16) >> 16;
 		data[j++] = 0;
 		i++;
 	}
-	return (data);
+	write(fd, data, mlx.cam->size_line * trace.y_res);
+	free(data);
 }
 
 void	bmp_making(t_mlx mlx, t_scene trace, char *name)
@@ -111,13 +110,10 @@ void	bmp_making(t_mlx mlx, t_scene trace, char *name)
 	int				fd;
 	t_bmpheader		head;
 	t_bmpinfhead	info;
-	char			*data;
 
 	fd = create_fd(name);
 	create_header(trace, &head, &info);
 	write_head(fd, head, info);
-	data = write_contents(mlx, trace);
-	write(fd, data, mlx.cam->size_line * trace.y_res);
-	free(data);
+	write_contents(fd, mlx, trace);
 	close(fd);
 }

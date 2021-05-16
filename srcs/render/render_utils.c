@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:11:17 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/15 14:03:13 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 13:46:12 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,20 @@ int		calc_avg_ssaa_color(int *color)
 	return ((ssaa_color[0] << 16) | (ssaa_color[1] << 8) | ssaa_color[2]);
 }
 
-int		close_minirt(t_render *render)
+int		close_minirt(t_mlx *mlx)
 {
-	clear_render(render);
-	exit(EXIT_SUCCESS);
-	return (1);
+	clear_render(mlx);
+	exit(0);
+	return (0);
 }
 
 int		change_cam(int key, t_mlx *mlx)
 {
 	if (key == K_ESC)
+	{
+		clear_render(mlx);
 		exit(0);
+	}
 	if (key == K_SP)
 	{
 		if (mlx->cam->next == NULL)
@@ -89,14 +92,22 @@ int		change_cam(int key, t_mlx *mlx)
 	return (0);
 }
 
-void	graphic_loop_mlx(t_mlx mlx, t_scene trace)
+void	graphic_loop_mlx(t_mlx *mlx_p, t_scene *trace_p, t_object **list_p)
 {
+	t_mlx		mlx;
+	t_scene		trace;
+
+	mlx = *mlx_p;
+	trace = *trace_p;
+	mlx.head = list_p;
+	mlx.mlx = mlx_p;
+	mlx.trace = trace_p;
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, trace.x_res, 
 			trace.y_res, "miniRT");
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr,
 			mlx.cam->img, 0, 0);
 	mlx_hook(mlx.win_ptr, DESTROYNOTIFY, STRUCTURENOTIFYMASK,
-			close_minirt, 0);
+			close_minirt, &mlx);
 	mlx_hook(mlx.win_ptr, KEYPRESS, KEYPRESSMASK,
 			change_cam, &mlx);
 	mlx_loop(mlx.mlx_ptr);

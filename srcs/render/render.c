@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 19:30:18 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/15 00:44:01 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 13:43:02 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,38 +53,33 @@ int		find_pixel_color(t_render *render, int *edge, int last[2])
 	return (calc_avg_ssaa_color(color));
 }
 
-void	render_error(void *ptr)
-{
-	t_render *render;
-
-	render = (t_render *)ptr;
-	clear_render(render);
-}
-
-void	clear_render(t_render *render)
+void	clear_render(t_mlx *mlx)
 {
 	void	*temp;
+	t_object	*list;
 
-	while (render->list)
+	list = *(mlx->head);
+	while (list)
 	{
-		temp = (void *)render->list->next;
-		free(render->list);
-		render->list = (t_object *)temp;
+		temp = (void *)list->next;
+		free(list);
+		list = (t_object *)temp;
 	}
-	render->list = NULL;
-	while (render->mlx.cam)
+	list = NULL;
+	mlx->head = NULL;
+	while (mlx->mlx->cam)
 	{
-		temp = (void *)render->mlx.cam->next;
-		free(render->mlx.cam);
-		render->mlx.cam = (t_cam *)temp;
+		temp = (void *)mlx->mlx->cam->next;
+		free(mlx->mlx->cam);
+		mlx->mlx->cam = (t_cam *)temp;
 	}
-	render->mlx.cam = NULL;
-	while (render->trace.light)
+	mlx->mlx->cam = NULL;
+	while (mlx->trace->light)
 	{
-		temp = (void *)render->trace.light->next;
-		free(render->trace.light);
-		render->trace.light = (t_light *)temp;
+		temp = (void *)mlx->trace->light->next;
+		free(mlx->trace->light);
+		mlx->trace->light = (t_light *)temp;
 	}
 	temp = NULL;
-	render->trace.light = NULL;
+	mlx->trace->light = NULL;
 }

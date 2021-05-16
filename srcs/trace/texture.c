@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 20:48:04 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/14 16:03:24 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 15:47:44 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_vec		wave(t_inter *inter, t_object *list)
 
 	sine = sin(inter->p.z * list->wavelength) + sin(inter->p.y *
 			list->wavelength);
-	return (rotation_y(inter->norm, sine));
+	return (rotation_x(inter->norm, sine));
 }
 
 void		apply_color(double r, double g, double b, double color[3])

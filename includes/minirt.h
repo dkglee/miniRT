@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:52:59 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/15 14:00:01 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 15:21:13 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,9 @@ typedef	struct		s_mlx
 	void			*win_ptr;
 	t_cam			*cam;
 	t_cam			*start;
+	t_object		**head;
+	t_scene			*trace;
+	struct s_mlx	*mlx;
 }					t_mlx;
 
 typedef	struct		s_render
@@ -182,10 +185,10 @@ typedef	struct		s_inter
 typedef	struct		s_bmpinfhead
 {
 	unsigned int	bisize;
-	double			biwidth;
-	double			biheight;
-	unsigned int	bibitcount;
-	unsigned int	bicolplanes;
+	int				biwidth;
+	int				biheight;
+	unsigned short	bibitcount;
+	unsigned short	bicolplanes;
 	unsigned int	bicompression;
 	unsigned int	bisize_img;
 	int				bix_ppm;
@@ -230,9 +233,10 @@ typedef	struct		s_pyramid
 /* bmp */
 
 int					create_fd(char *name);
+void				name_free(char **s1, char **s2, char **s3);
 void				create_header(t_scene trace, t_bmpheader *head, t_bmpinfhead *info);
 void				write_head(int fd, t_bmpheader head, t_bmpinfhead info);
-char				*write_contents(t_mlx mlx, t_scene trace);
+void				write_contents(int fd, t_mlx mlx, t_scene trace);
 void				bmp_making(t_mlx mlx, t_scene trace, char *name);
 
 /* error */
@@ -264,6 +268,7 @@ double				ft_vec_dot(t_vec u, t_vec v);
 
 /* minirt */
 
+void				clear_memory(t_mlx *mlx, t_scene *trace, t_object **head);
 void				init_mlx(t_mlx *mlx, t_scene *trace);
 
 /* parse */
@@ -389,12 +394,12 @@ void				init_render(t_mlx mlx, t_scene trace, t_object *list, t_render *render);
 void				render_world(t_render *render);
 int					find_pixel_color(t_render *render, int *edge, int last[2]);
 void				render_error(void *ptr);
-void				clear_render(t_render *render);
+void				clear_render(t_mlx *mlx);
+void				close_render(t_mlx *mlx);
 int					calc_avg_simple_color(int a, int b);
 int					calc_avg_ssaa_color(int *color);
-int					close_minirt(t_render *render);
 int					change_cam(int key, t_mlx *mlx);
-void				graphic_loop_mlx(t_mlx mlx, t_scene trace);
+void				graphic_loop_mlx(t_mlx *mlx_p, t_scene *trace_p, t_object **list_p);
 int					*sample_first(int *edge, int last[2], t_tmp tmp, t_render *render);
 int					*sample_center(int *edge, int last[2], t_tmp tmp, t_render *render);
 int					*sample_last(int *edge, int last[2], t_tmp tmp, t_render *render);

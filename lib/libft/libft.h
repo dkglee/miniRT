@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 15:40:27 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/11 18:52:47 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 14:21:46 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char			*ft_itoa(int n);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strnstr(const char *big,
 					const char *little, size_t len);
+char			*ft_strndup(char *str, int n);
 
 int				ft_isprint(int c);
 int				ft_isalnum(int c);

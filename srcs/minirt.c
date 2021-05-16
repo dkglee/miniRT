@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 13:51:49 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/15 13:52:56 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 15:24:59 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	init_mlx(t_mlx *mlx, t_scene *trace)
 		trace->y_res = trace->y_res < win_height ? trace->y_res : win_height;
 	}*/
 	mlx->start = mlx->cam;
-	printf("trace->x_res: %d\n", trace->x_res);
-	printf("trace->y_res: %d\n", trace->y_res);
 	while (mlx->cam)
 	{
 		mlx->cam->img = mlx_new_image(mlx->mlx_ptr, trace->x_res, trace->y_res);
@@ -47,6 +45,37 @@ int		mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey)
 }
 
 #endif
+
+void	clear_memory(t_mlx *mlx, t_scene *trace, t_object **head)
+{
+	void		*tmp;
+	t_object	*list;
+
+	list = *head;
+	while (list)
+	{
+		tmp = (void *)list->next;
+		free(list);
+		list = (t_object *)tmp;
+	}
+	list = NULL;
+	head = NULL;
+	while (mlx->cam)
+	{
+		tmp = (void *)mlx->cam->next;
+		free(mlx->cam);
+		mlx->cam = (t_cam *)tmp;
+	}
+	mlx->cam = NULL;
+	while (trace->light)
+	{
+		tmp = (void *)trace->light->next;
+		free(trace->light);
+		trace->light = (t_light *)tmp;
+	}
+	tmp = NULL;
+	trace->light = NULL;
+}
 
 void	check_arg(int argc, char **argv)
 {
@@ -76,10 +105,9 @@ int		main(int argc, char **argv)
 	if (argc == 3)
 	{
 		bmp_making(mlx, trace, argv[1]);
-		clear_render(&render[0]);
+		clear_memory(&mlx, &trace, &list);
 	}
 	else
-		graphic_loop_mlx(mlx, trace);
-	printf("hello");
+		graphic_loop_mlx(&mlx, &trace, &list);
 	return (0);
 }

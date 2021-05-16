@@ -6,7 +6,7 @@
 #    By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/05 13:51:29 by deulee            #+#    #+#              #
-#    Updated: 2021/05/15 01:05:28 by deulee           ###   ########.fr        #
+#    Updated: 2021/05/16 14:34:52 by deulee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ endif
 
 FILES = minirt.c \
 		$(BMPDIR)bmp.c \
+		$(BMPDIR)bmp_utils.c \
 		$(ERRDIR)error.c \
 		$(MATDIR)color.c \
 		$(MATDIR)rotation.c \
