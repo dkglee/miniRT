@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 19:30:18 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/16 13:43:02 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 16:43:22 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	clear_render(t_mlx *mlx)
 		free(list);
 		list = (t_object *)temp;
 	}
-	list = NULL;
 	mlx->head = NULL;
 	while (mlx->mlx->cam)
 	{
@@ -80,6 +79,5 @@ void	clear_render(t_mlx *mlx)
 		free(mlx->trace->light);
 		mlx->trace->light = (t_light *)temp;
 	}
-	temp = NULL;
 	mlx->trace->light = NULL;
 }

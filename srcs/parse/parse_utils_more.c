@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:08:14 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/15 00:52:57 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 16:44:01 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ void	clear_parsing(t_parse *parse)
 		free(parse->trace->light);
 		parse->trace->light = (t_light *)temp;
 	}
+	parse->trace->light = NULL;
 	while (lst_temp)
 	{
 		temp = (void *)lst_temp->next;
 		free(lst_temp);
-		lst_temp = (t_object *)lst_temp;
+		lst_temp = (t_object *)temp;
 	}
 	*(parse->list) = NULL;
 }

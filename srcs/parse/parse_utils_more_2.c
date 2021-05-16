@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 17:05:46 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/14 01:27:09 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 16:36:56 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_object	*ft_new_object(t_object **list)
 {
 	t_object	*new;
 
+	new = NULL;
 	new = (t_object *)malloc(sizeof(t_object));
 	if (new == NULL)
 		error("Object Malloc Error", NULL, NULL);
