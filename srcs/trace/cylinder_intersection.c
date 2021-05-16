@@ -6,7 +6,7 @@
 /*   By: deulee <deulee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 21:38:07 by deulee            #+#    #+#             */
-/*   Updated: 2021/05/16 01:12:20 by deulee           ###   ########.fr       */
+/*   Updated: 2021/05/16 18:48:27 by deulee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,23 @@ bool		find_distance(double dis[2], t_vec origin, t_vec dir, t_object *list)
 	c = ft_vec_dot(w, w) - pow(list->fig.cy.radius, 2);
 	dis[0] = (-b + sqrt(pow(b, 2) - 4 * a * c)) / (2 * a);
 	dis[1] = (-b - sqrt(pow(b, 2) - 4 * a * c)) / (2 * a);
-	if (((dis[0] < EPSILON) && (dis[1] < EPSILON)) ||
-			((dis[0] != dis[0]) && (dis[1] != dis[1])))
+	if (((dis[0] < EPSILON) && (dis[1] < EPSILON)) || 
+			((dis[0] - dis[0] != 0) && (dis[1] - dis[1] != 0)))
 	{
 		dis[0] = INFINITY;
 		dis[1] = INFINITY;
 		return (false);
 	}
+	/*
+	if (((dis[0] < EPSILON) && (dis[1] < EPSILON)) || 
+			(!((dis[0] - dis[0] > -1) && (dis[0] - dis[0] < 1)) &&
+			 !((dis[1] - dis[1] > -1) && (dis[1] - dis[1] < 1))))
+	{
+		dis[0] = INFINITY;
+		dis[1] = INFINITY;
+		return (false);
+	}
+*/
 	return (true);
 }
 
